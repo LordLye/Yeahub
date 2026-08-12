@@ -1,0 +1,30 @@
+.section {
+  margin-bottom: 24px;
+}
+
+.title {
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: $color-gray-600;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.expandLink {
+  margin-top: 8px;
+  font-size: 14px;
+  color: $color-purple-600;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+}

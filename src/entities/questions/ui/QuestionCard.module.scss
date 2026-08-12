@@ -1,0 +1,143 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0;
+  width: 100%;
+}
+
+.titleRow {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.bullet {
+  min-width: 8px;
+  height: 8px;
+  margin-top: 8px;
+  border-radius: 50%;
+  background-color: $color-purple-600;
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: $color-gray-800;
+  line-height: 1.2;
+  text-align: start;
+}
+
+.chevron {
+  min-width: 24px;
+  color: $color-purple-600;
+  transition: transform 0.3s;
+
+  &.open {
+    transform: rotate(180deg);
+  }
+}
+
+.contentWrapper {
+  display: grid;
+  transition: all 0.3s;
+
+  &.open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    margin-top: 16px;
+  }
+
+  &.closed {
+    grid-template-rows: 0fr;
+    opacity: 0;
+  }
+}
+
+.content {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-size: 16px;
+  color: $color-gray-600;
+  line-height: 1.375;
+}
+
+.metaRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+}
+
+.badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  background-color: $color-badge-bg;
+  padding: 6px 10px;
+  border-radius: $radius-sm;
+}
+
+.badgeLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-badge-text;
+  line-height: 1.375;
+}
+
+.badgeValue {
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-white;
+  background-color: $color-purple-700;
+  padding: 2px 4px;
+  border-radius: $radius-sm;
+  line-height: 1.375;
+}
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: $color-gray-600;
+  line-height: 1.375;
+}
+
+.moreButton {
+  padding-right: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  gap: 4px;
+  border: none;
+  background: transparent;
+}
+
+.moreText {
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-purple-600;
+  line-height: 1.375;
+}
+
+.moreIcon {
+  color: $color-purple-600;
+}

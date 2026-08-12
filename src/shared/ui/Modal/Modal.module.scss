@@ -1,0 +1,26 @@
+.dialog {
+  position: fixed;
+  top: $header-height;
+  left: 0;
+  margin: 0;
+  padding: 24px;
+  padding-right: 48px;
+  width: 100dvw;
+  height: calc(100dvh - #{$header-height});
+  max-width: none;
+  max-height: none;
+  border: 0;
+  background-color: $color-white;
+  z-index: 40;
+}
+
+.closeButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 8px;
+  color: $color-red-800;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}

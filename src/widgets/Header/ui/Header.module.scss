@@ -1,0 +1,55 @@
+.header {
+  height: $header-height;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  padding-right: 0;
+  background-color: $color-white;
+  border-bottom: 1px solid $color-gray-200;
+  z-index: 50;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 500;
+  color: $color-gray-800;
+}
+
+.chevron {
+  color: $color-gray-500;
+}
+
+.menuButton {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $color-gray-100;
+  }
+}
+
+.menuIcon {
+  color: $color-gray-800;
+}

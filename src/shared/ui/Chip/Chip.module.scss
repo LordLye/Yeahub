@@ -1,0 +1,22 @@
+.chip {
+  padding: 8px 16px;
+  border-radius: $radius-xl;
+  border: 1px solid $color-gray-300;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+  background: transparent;
+
+  &:hover {
+    background-color: $color-gray-100;
+  }
+
+  &.active {
+    border-color: $color-violet-500;
+    color: $color-violet-600;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}

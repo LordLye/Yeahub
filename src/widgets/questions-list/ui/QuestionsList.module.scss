@@ -1,0 +1,40 @@
+.section {
+  transition: opacity 0.2s;
+
+  &.fetching {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  background-color: $color-white;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  box-shadow: 0px 4px 10px 0px rgba(106, 99, 118, 0.102);
+
+
+  &:first-child {
+    border-bottom-left-radius: $radius-xl;
+    border-bottom-right-radius: $radius-xl;
+  }
+
+  &:not(:first-child) {
+    border-radius: $radius-xl;
+  }
+}
+
+.message {
+  padding: 16px;
+}
