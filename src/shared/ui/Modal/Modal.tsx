@@ -5,20 +5,14 @@ import styles from './Modal.module.scss';
 
 export function Modal({isOpen, onClose, children}: { isOpen: boolean; onClose: () => void; children: React.ReactNode }) {
     const dialogRef = useRef<HTMLDialogElement>(null);
-    const [isMounted, setIsMounted] = useState(false);
-
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
 
     useEffect(() => {
         const dialog = dialogRef.current;
         if (!dialog) return;
-        if (isOpen && !dialog.open) {
+        if (isOpen) {
             dialog.showModal();
             document.body.style.overflow = "hidden";
-        }
-        if (!isOpen && dialog.open) {
+        } else {
             dialog.close();
             document.body.style.overflow = "";
         }
@@ -28,7 +22,7 @@ export function Modal({isOpen, onClose, children}: { isOpen: boolean; onClose: (
         };
     }, [isOpen]);
 
-    if (!isMounted) return null;
+    if (!isOpen) return null;
 
     return createPortal(
         <dialog
