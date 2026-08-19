@@ -183,8 +183,6 @@ export function FiltersModal({ isOpen, setIsOpen }: FiltersModalProps) {
 		));
 	}, [active.rate, toggle]);
 
-	console.log('STAAAAAAAAAAART MODAL', isSpecializationsLoading)
-
 	return (
 		<Modal isOpen={isOpen} onClose={handleClose}>
 			<SearchInput />
