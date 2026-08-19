@@ -186,7 +186,7 @@ export function FiltersModal({ isOpen, setIsOpen }: FiltersModalProps) {
 	return (
 		<Modal isOpen={isOpen} onClose={handleClose}>
 			<SearchInput />
-
+			
 			<Section title="Специализация" isLoading={isLoading} expanded={true} expandCount={5}>
 				{memoizedSpecializations}
 			</Section>

@@ -4,25 +4,24 @@ import styles from './SearchInput.module.scss';
 
 export function SearchInput() {
     const { params, setParam } = useQueryFilters();
-    const [searchValue, setSearchValue] = useState(() => params.get("search") || "");
+    const [searchValue, setSearchValue] = useState(() => params.get("titleOrDescription") || "");
 
     useEffect(() => {
-        const currentUrlSearch = params.get("search") || "";
+        const currentUrlSearch = params.get("titleOrDescription") || "";
         if (searchValue !== currentUrlSearch) {
             setSearchValue(currentUrlSearch);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [params]);
 
     useEffect(() => {
-        const currentUrlSearch = params.get("search") || "";
+        const currentUrlSearch = params.get("titleOrDescription") || "";
 
         if (searchValue === currentUrlSearch) {
             return;
         }
 
         const delayDebounceFn = setTimeout(() => {
-            setParam("search", searchValue || undefined);
+            setParam("titleOrDescription", searchValue || undefined);
         }, 400);
 
         return () => clearTimeout(delayDebounceFn);

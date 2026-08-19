@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
+import styles from './MixedContentRenderer.module.scss';
 
 interface MixedContentRendererProps {
   dbText: string;
@@ -23,7 +24,7 @@ export function MixedContentRenderer({ dbText }: MixedContentRendererProps) {
 
   return (
     <div 
-      className="mixed-content-body"
+      className={styles.mixedContentBody}
       dangerouslySetInnerHTML={{ __html: cleanHtml }} 
     />
   );

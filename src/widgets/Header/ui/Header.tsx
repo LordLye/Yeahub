@@ -4,8 +4,11 @@ import { useState } from "react";
 import { FiltersModal } from "@/features/filter-questions";
 import styles from './Header.module.scss';
 
+
+
 export function Header() {
     const [isOpen, setIsOpen] = useState(false);
+    console.log(isOpen);
 
     function openModal() {
         setIsOpen(true);
@@ -24,10 +27,10 @@ export function Header() {
             </div>
 
             <button className={styles.menuButton} onClick={openModal}>
-                <Menu size={22} className={styles.menuIcon} />
+                <Menu size={23} className={styles.menuIcon} />
             </button>
 
-            <FiltersModal isOpen={isOpen} setIsOpen={setIsOpen} />
+            { isOpen && <FiltersModal isOpen={isOpen} setIsOpen={setIsOpen} />}
         </div>
     );
 }
