@@ -2,13 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 24px 24px 12px;
+  gap: 10px;
+  padding: 10px;
 }
 
 .navButton {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +27,7 @@
 .pages {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 1px;
   font-size: 14px;
 }
 
@@ -36,7 +36,11 @@
 }
 
 .pageButton {
-  padding: 4px 2px;
+  color: $color-black-700;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 2px 6px;
   border-radius: $radius-sm;
   border: none;
   background: transparent;

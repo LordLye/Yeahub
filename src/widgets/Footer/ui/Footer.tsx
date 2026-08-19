@@ -22,11 +22,11 @@ export function Footer() {
                     <span>Документы</span>
 
                     <div className={styles.icons}>
-                        <CircleIcon icon="figma" />
-                        <CircleIcon icon="telegram" w={36} h={36} bgColor="black" />
-                        <CircleIcon icon="youtube" w={36} h={36} bgColor="black" />
-                        <CircleIcon icon="linkedin" w={30} h={30} />
-                        <CircleIcon icon="github" w={36} h={36} bgColor="black" />
+                        <CircleIcon icon="figma" w={14} h={14} />
+                        <CircleIcon icon="telegram" w={20} h={20} bgColor="black" />
+                        <CircleIcon icon="youtube" w={20} h={20} bgColor="black" />
+                        <CircleIcon icon="linkedin" w={20} h={20} />
+                        <CircleIcon icon="github" w={20} h={20} bgColor="black" />
                     </div>
                 </div>
 

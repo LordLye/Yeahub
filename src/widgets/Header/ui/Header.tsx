@@ -27,7 +27,7 @@ export function Header() {
             </div>
 
             <button className={styles.menuButton} onClick={openModal}>
-                <Menu size={22} className={styles.menuIcon} />
+                <Menu size={23} className={styles.menuIcon} />
             </button>
 
             { isOpen && <FiltersModal isOpen={isOpen} setIsOpen={setIsOpen} />}
