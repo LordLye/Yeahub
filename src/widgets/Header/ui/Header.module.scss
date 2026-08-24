@@ -8,17 +8,47 @@
   background-color: $color-white;
   border-bottom: 1px solid $color-gray-200;
   z-index: 50;
+
+  @include respond-to('tablet') {
+    padding: 15px 30px;
+  }
+
+  @include respond-to('desktop') {
+    padding: 15.5px 112px;
+  }
 }
 
 .left {
   display: flex;
   align-items: center;
   gap: 20px;
+
+  @include respond-to('tablet') {
+    gap: 10px;
+  }
+
+  @include respond-to('desktop') {
+    gap: 8px;
+  }
+}
+
+.logoWrapper {
+  color: $color-logo-black;
 }
 
 .logo {
   width: 33px;
   height: 33px;
+}
+
+.logoYeahub {
+  display: none;
+  width: 95px;
+
+  @include respond-to('tablet') {
+    display: block;
+    margin-right: 26px;
+  }
 }
 
 .titleGroup {
@@ -27,14 +57,54 @@
   gap: 4px;
 }
 
+.navList {
+  display: none;
+
+  @include respond-to('desktop') {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+.navItem {
+  font-size: 16px;
+  font-weight: 500;
+  color: $color-black-900;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  &:hover {
+    color: $color-logo-black;
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
+.navLink {
+  text-decoration: none;
+  color: inherit;
+}
+
 .title {
   font-size: 16px;
   font-weight: 500;
   color: $color-black-900;
+
+  @include respond-to('desktop') {
+    display: none;
+  }
 }
 
 .chevron {
   color: $color-gray-500;
+
+  @include respond-to('desktop') {
+    display: none;
+  }
 }
 
 .menuButton {

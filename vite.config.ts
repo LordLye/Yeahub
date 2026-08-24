@@ -1,18 +1,22 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import svgr from 'vite-plugin-svgr';
 import path from 'path'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), svgr()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(import.meta.dirname, './src'),
     },
   },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "${path.resolve(__dirname, './src/app/styles/variables').replace(/\\/g, '/')}" as *;\n`,
+        additionalData: `
+          @use "${path.resolve(import.meta.dirname, './src/app/styles/variables').replace(/\\/g, '/')}" as *;
+          @use "${path.resolve(import.meta.dirname, './src/app/styles/breakpoints').replace(/\\/g, '/')}" as *;
+        `,
       },
     },
   },

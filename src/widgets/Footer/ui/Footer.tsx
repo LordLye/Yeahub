@@ -1,11 +1,15 @@
 import { CircleIcon } from "@/shared/ui/CircleIcon";
 import styles from './Footer.module.scss';
+import { Icon } from "@/shared/ui/Icon";
 
 export function Footer() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.card}>
-                <h1 className={styles.title}>Yeahub</h1>
+                <div className={styles.logoWrapper}>
+                    <Icon name="yeahub" className={styles.logo} />
+                </div>
+                
 
                 <p className={styles.subtitle}>
                     Выбери, каким будет IT завтра, вместе с нами
@@ -28,11 +32,10 @@ export function Footer() {
                         <CircleIcon icon="linkedin" w={20} h={20} />
                         <CircleIcon icon="github" w={20} h={20} bgColor="black" />
                     </div>
-                </div>
-
-                <p className={styles.socialHint}>
+                    <p className={styles.socialHint}>
                     Ищите нас и в других соцсетях @yeahub_it
-                </p>
+                    </p>
+                </div>
             </div>
         </div>
     );

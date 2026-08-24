@@ -17,12 +17,37 @@ export function Header() {
     return (
         <div className={styles.header}>
             <div className={styles.left}>
-                <Icon name="logo" className={styles.logo} />
+                <div className={styles.logoWrapper}>
+                    <Icon name="logo" className={styles.logo} />
+                </div>
+                <Icon name="yeahub" className={styles.logoYeahub} />
                 <div className={styles.titleGroup}>
                     <span className={styles.title}>
                         Подготовка
                     </span>
-                    <ChevronDown size={18} className={styles.chevron} />
+                    <ChevronDown size={24} className={styles.chevron} />
+                    <ul className={styles.navList}>
+                        <li className={styles.navItem}>
+                            <a href="#" className={styles.navLink}>
+                                База вопросов
+                            </a>
+                        </li>
+                        <li className={styles.navItem}>
+                            <a href="#" className={styles.navLink}>
+                                Тренажёр
+                            </a>
+                        </li>
+                        <li className={styles.navItem}>
+                            <a href="#" className={styles.navLink}>
+                                Материалы
+                            </a>
+                        </li>
+                        <li className={styles.navItem}>
+                            <a href="#" className={styles.navLink}>
+                                Навыки (hh)
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
 

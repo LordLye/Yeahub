@@ -1,19 +1,27 @@
 .page {
-  padding: 0 10px;
-  margin-bottom: 20px;
+  
   text-align: start;
 
   > * + * {
     margin-top: 16px;
   }
+
 }
 
 .card {
   padding: 10px;
-  padding-top: 16px;
+  padding-top: 20px;
   border-radius: $radius-2xl;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   background-color: $color-white;
+
+  @include respond-to('tablet') {
+    padding: 16px;
+  }
+
+  @include respond-to('desktop') {
+    padding: 24px 20px;
+  }
 }
 
 .content {
@@ -22,12 +30,53 @@
   background-color: $color-white;
 }
 
+.titleWrapper {
+  border-bottom: 1px solid $color-gray-200;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  padding-bottom: 8px;
+  margin: 0 0 24px 0;
+  display: flex;
+  justify-content: space-between;
+
+  @include respond-to('tablet') {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  @include respond-to('desktop') {
+    padding-bottom: 17px;
+    margin-bottom: 24px;
+  }
+}
+
+.filterIcon {
+  padding: 5px;
+  border: 1px solid $color-gray-300;
+  border-radius: $radius-md;
+  color: $color-black-700;
+  cursor: pointer;
+  transition: color 0.3s;
+  display: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+
+  @include respond-to('tablet') {
+    display: block;
+  }
+}
+
 .title {
   font-size: 20px;
   line-height: 1.2;
   font-weight: 500;
-  padding-bottom: 8px;
-  margin: 9px 0 24px 0;
-  border-bottom: 1px solid $color-gray-200;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  @include respond-to('tablet') {
+    font-size: 24px;
+  }
 }

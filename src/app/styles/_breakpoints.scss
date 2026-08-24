@@ -1,0 +1,33 @@
+// 1. ОБЯЗАТЕЛЬНО: подключаем встроенный модуль Sass для работы с картами
+@use "sass:map";
+
+$breakpoints: (
+    'mobile-only': 767px,
+    'tablet': 768px,
+    'desktop': 1024px
+);
+
+@mixin respond-to($breakpoint) {
+
+    // 2. Используем современный синтаксис map.has-key вместо map-has-key
+    @if map.has-key($breakpoints, $breakpoint) {
+        // 3. Используем современный синтаксис map.get вместо map-get
+        $value: map.get($breakpoints, $breakpoint);
+
+        @if $breakpoint =='mobile-only' {
+            @media (max-width: $value) {
+                @content;
+            }
+        }
+
+        @else {
+            @media (min-width: $value) {
+                @content;
+            }
+        }
+    }
+
+    @else {
+        @warn "Unknown breakpoint: #{$breakpoint}.";
+    }
+}
