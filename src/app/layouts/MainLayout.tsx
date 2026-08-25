@@ -7,13 +7,9 @@ export function MainLayout() {
     return (
         <div className={styles.layout}>
             <Header />
-            <div className={styles.mainContainer}>
                 <main className={styles.content}>
                     <Outlet />
                 </main>
-                
-                <aside id="desktop-aside-slot" className={styles.asideSlot}></aside>
-            </div>
             <Footer />
         </div>
     );

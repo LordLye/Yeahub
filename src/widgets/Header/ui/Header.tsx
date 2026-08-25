@@ -1,18 +1,11 @@
 import { Menu, ChevronDown } from "lucide-react";
 import { Icon } from '@/shared/ui/Icon';
-import { useState } from "react";
-import { FiltersModal } from "@/features/filter-questions";
+import { openMobileFilters } from "@/features/filter-questions";
 import styles from './Header.module.scss';
-
-
+import { useDispatch } from "react-redux";
 
 export function Header() {
-    const [isOpen, setIsOpen] = useState(false);
-    console.log(isOpen);
-
-    function openModal() {
-        setIsOpen(true);
-    }
+    const dispatch = useDispatch();
 
     return (
         <div className={styles.header}>
@@ -51,11 +44,9 @@ export function Header() {
                 </div>
             </div>
 
-            <button className={styles.menuButton} onClick={openModal}>
+            <button className={styles.menuButton} onClick={() => dispatch(openMobileFilters())}>
                 <Menu size={23} className={styles.menuIcon} />
             </button>
-
-            { isOpen && <FiltersModal isOpen={isOpen} setIsOpen={setIsOpen} />}
         </div>
     );
 }

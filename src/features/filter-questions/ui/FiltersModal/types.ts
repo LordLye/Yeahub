@@ -9,6 +9,7 @@ type ActiveState = {
 	specializationId: string[];
 	rate: string[];
 	complexity: string[];
+	titleOrDescription: string;
 };
 
 type SearchParamsLike = {

@@ -45,9 +45,9 @@ export function Section({
             )}
 
             {expanded && isLoading && (
-                <p className={styles.expandLink}>
+                <div className={styles.expandLink}>
                     <Skeleton width="100px" height="16px" />
-                </p>
+                </div>
             )}
         </div>
     );
