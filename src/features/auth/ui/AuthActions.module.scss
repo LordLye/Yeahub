@@ -1,0 +1,31 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @include respond-to('desktop') {
+        flex-direction: row;
+        gap: 26px;
+    }
+}
+
+.loginBtn {
+    font-size: 16px;
+    font-weight: 600;
+    color: $color-purple-700;
+    padding: 4px 8px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.registerBtn {
+    font-size: 18px;
+    font-weight: 500;
+    color: $color-white;
+    padding: 11.5px 24px;
+    cursor: pointer;
+    background-color: $color-purple-700;
+    border: none;
+    border-radius: $radius-md;
+}

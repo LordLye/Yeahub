@@ -78,13 +78,15 @@
 }
 
 .filterIcon {
-  padding: 5px;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
   border: 1px solid $color-gray-300;
   border-radius: $radius-md;
   color: $color-black-700;
   cursor: pointer;
   transition: color 0.3s;
-  display: none;
+  display: block;
 
   &:hover {
     opacity: 0.8;
@@ -95,7 +97,8 @@
   }
 
   @include respond-to('tablet') {
-    display: block;
+    width: 24px;
+    height: 24px;
   }
 
   @include respond-to('desktop') {
