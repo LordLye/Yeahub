@@ -5,12 +5,15 @@ import { AuthActions, closeAuthMenu, openAuthMenu, selectIsAuthMenuOpen } from "
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "@/shared/ui/Modal/Modal";
 import { useRef, useState } from "react";
+import SelectTitles from "@/features/selectTitles/ui/SelectTitles";
 
 export function Header() {
     const dispatch = useDispatch();
     const buttonRef = useRef<HTMLButtonElement>(null);
 
     const [coords, setCoords] = useState<{ top: number; right: number }>({ top: 0, right: 0 });
+
+    const [isSelectModalOpen, setIsSelectModalOpen] = useState(false);
 
     const OpenAuthMenu = () => {
         if (buttonRef.current) {
@@ -36,32 +39,21 @@ export function Header() {
                 </div>
                 <Icon name="yeahub" className={styles.logoYeahub} />
                 <div className={styles.titleGroup}>
-                    <span className={styles.title}>
-                        Подготовка
-                    </span>
-                    <ChevronDown size={24} className={styles.chevron} />
-                    <ul className={styles.navList}>
-                        <li className={styles.navItem}>
-                            <a href="#" className={styles.navLink}>
-                                База вопросов
-                            </a>
-                        </li>
-                        <li className={styles.navItem}>
-                            <a href="#" className={styles.navLink}>
-                                Тренажёр
-                            </a>
-                        </li>
-                        <li className={styles.navItem}>
-                            <a href="#" className={styles.navLink}>
-                                Материалы
-                            </a>
-                        </li>
-                        <li className={styles.navItem}>
-                            <a href="#" className={styles.navLink}>
-                                Навыки (hh)
-                            </a>
-                        </li>
-                    </ul>
+                    <div className={styles.titleWrapper} onClick={() => setIsSelectModalOpen(!isSelectModalOpen)}>
+                        <span className={styles.title}>
+                            Подготовка
+                        </span>
+                        <ChevronDown size={24} className={styles.chevron} />
+                    </div>
+                    <div className={styles.selectModalDesktop}>
+                        <SelectTitles />
+                    </div>
+
+                    {isSelectModalOpen && (
+                        <div className={styles.selectModalMobile}>
+                            <SelectTitles />
+                        </div>
+                    )}
                 </div>
             </div>
 
