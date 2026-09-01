@@ -14,6 +14,15 @@
   background: transparent;
   padding: 0;
   width: 100%;
+  padding: 10px;
+
+  @include respond-to('tablet') {
+    padding: 16px;
+  }
+
+  @include respond-to('desktop') {
+    padding: 16px 24px;
+  }
 }
 
 .titleRow {
@@ -72,6 +81,15 @@
   &.open {
     grid-template-rows: 1fr;
     opacity: 1;
+    padding: 0 10px 10px 10px;
+
+    @include respond-to('tablet') {
+      padding: 0 16px 16px 16px;
+    }
+
+    @include respond-to('desktop') {
+      padding: 0 24px 16px 24px;
+    }
   }
 
   &.closed {

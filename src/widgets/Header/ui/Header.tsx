@@ -15,6 +15,10 @@ export function Header() {
 
     const [isSelectModalOpen, setIsSelectModalOpen] = useState(false);
 
+    function handleSwitchSelectModal(e: React.MouseEvent<HTMLDivElement>) { 
+        setIsSelectModalOpen((prev) => !prev);
+    }
+
     const OpenAuthMenu = () => {
         if (buttonRef.current) {
             const rect = buttonRef.current.getBoundingClientRect();
@@ -39,19 +43,19 @@ export function Header() {
                 </div>
                 <Icon name="yeahub" className={styles.logoYeahub} />
                 <div className={styles.titleGroup}>
-                    <div className={styles.titleWrapper} onClick={() => setIsSelectModalOpen(!isSelectModalOpen)}>
+                    <div className={styles.titleWrapper} onClick={handleSwitchSelectModal} data-menu-trigger>
                         <span className={styles.title}>
                             Подготовка
                         </span>
                         <ChevronDown size={24} className={styles.chevron} />
                     </div>
                     <div className={styles.selectModalDesktop}>
-                        <SelectTitles />
+                        <SelectTitles/>
                     </div>
 
                     {isSelectModalOpen && (
                         <div className={styles.selectModalMobile}>
-                            <SelectTitles />
+                            <SelectTitles isOpen={isSelectModalOpen} onClose={() => setIsSelectModalOpen(false)} />
                         </div>
                     )}
                 </div>
@@ -60,7 +64,6 @@ export function Header() {
             <div className={styles.desktopAuth}>
                 <AuthActions />
             </div>
-
 
             <button className={styles.menuButton} onClick={OpenAuthMenu} ref={buttonRef}>
                 <Menu size={23} className={styles.menuIcon} />
@@ -81,7 +84,6 @@ export function Header() {
                     <AuthActions />
                 </div>
             </Modal>
-
         </div>
     );
 }

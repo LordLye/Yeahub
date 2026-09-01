@@ -1,8 +1,31 @@
+import { useEffect, useRef } from 'react';
 import styles from './SelectTitles.module.scss';
 
-function SelectTitles() {
+function SelectTitles({ isOpen, onClose }: { isOpen?: boolean; onClose?: () => void }) {
+    const ref = useRef<HTMLUListElement>(null);
+
+    useEffect(() => {
+        if (!isOpen || !onClose) return;
+
+        const handleClickOutside = (event: MouseEvent) => {
+            const ul = ref.current;
+            const target = event.target as HTMLElement;
+            
+            if (ul && !ul.contains(target) && !target.closest('[data-menu-trigger]')) {
+                onClose();
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isOpen, onClose]);
+
+    if (!isOpen) return null;
+
     return (
-        <ul className={styles.navList}>
+        <ul className={styles.navList} ref={ref}>
             <li className={styles.navItem}>
                 <a href="#" className={styles.navLink}>
                     База вопросов
