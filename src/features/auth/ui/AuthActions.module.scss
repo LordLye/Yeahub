@@ -17,6 +17,14 @@
     cursor: pointer;
     background-color: transparent;
     border: none;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.6;
+    }
 }
 
 .registerBtn {
@@ -28,4 +36,12 @@
     background-color: $color-purple-700;
     border: none;
     border-radius: $radius-md;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.6;
+    }
 }

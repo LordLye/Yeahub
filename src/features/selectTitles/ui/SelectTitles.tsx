@@ -22,8 +22,6 @@ function SelectTitles({ isOpen, onClose }: { isOpen?: boolean; onClose?: () => v
         };
     }, [isOpen, onClose]);
 
-    if (!isOpen) return null;
-
     return (
         <ul className={styles.navList} ref={ref}>
             <li className={styles.navItem}>

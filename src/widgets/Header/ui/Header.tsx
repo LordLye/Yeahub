@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "@/shared/ui/Modal/Modal";
 import { useRef, useState } from "react";
 import SelectTitles from "@/features/selectTitles/ui/SelectTitles";
+import clsx from "clsx";
 
 export function Header() {
     const dispatch = useDispatch();
@@ -43,14 +44,18 @@ export function Header() {
                 </div>
                 <Icon name="yeahub" className={styles.logoYeahub} />
                 <div className={styles.titleGroup}>
+                    <div className={styles.selectModalDesktop}>
+                        <SelectTitles/>
+                    </div>
+
                     <div className={styles.titleWrapper} onClick={handleSwitchSelectModal} data-menu-trigger>
                         <span className={styles.title}>
                             Подготовка
                         </span>
-                        <ChevronDown size={24} className={styles.chevron} />
-                    </div>
-                    <div className={styles.selectModalDesktop}>
-                        <SelectTitles/>
+                        <ChevronDown
+                            size={24} 
+                            className={clsx(styles.chevron, isSelectModalOpen && styles.open)}
+                        />
                     </div>
 
                     {isSelectModalOpen && (

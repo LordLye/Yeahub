@@ -64,6 +64,14 @@
   gap: 4px;
   cursor: pointer;
   padding: 6px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
 }
 
 .selectModalDesktop {
@@ -73,6 +81,7 @@
     display: block;
   }
 }
+
 .selectModalMobile {
   display: block;
   position: relative;
@@ -94,6 +103,11 @@
 
 .chevron {
   color: $color-gray-500;
+  transition: transform 0.2s ease-in-out;
+
+  &.open {
+    transform: rotate(180deg);
+  }
 
   @include respond-to('desktop') {
     display: none;
