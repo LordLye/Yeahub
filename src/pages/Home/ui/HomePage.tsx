@@ -10,14 +10,16 @@ import { ResponsivePortal } from "@/shared/ui/responsivePortal/ResponsivePortal"
 
 export function HomePage() {
   const isFiltersOpen = useSelector(selectIsFilterOpen);
+  const headerHeight = useSelector((state: any) => state.header?.headerHeight ?? 0);
   const dispatch = useDispatch();
 
   const handleCloseMobile = () => {
-// <-- вызываем функцию для применения текущих фильтров
-    // Здесь при закрытии мобильной шторки можно вызвать applyCurrentFilters, 
-    // либо перенести вызов applyFiltersToUrl внутрь useEffect компонента FiltersContent, который срабатывает при размонтировании.
     dispatch(closeMobileFilters());
   };
+
+  function handleOpenFilters() {
+    dispatch(openMobileFilters());
+  }
 
   return (
     <div className={styles.page}>
@@ -25,16 +27,26 @@ export function HomePage() {
         <div className={styles.content}>
           <div className={styles.titleWrapper}>
             <h1 className={styles.title}>Вопросы React, JavaScript</h1>
-            <Icon className={styles.filterIcon} name="filterIcon" size={24} onClick={() => dispatch(openMobileFilters())} />
+            <Icon className={styles.filterIcon} name="filterIcon" size={24} onClick={handleOpenFilters} />
           </div>
           <Suspense fallback={<QuestionListSkeleton />}>
-              <QuestionsList />
+            <QuestionsList />
           </Suspense>
         </div>
       </div>
 
       <aside id="desktop-aside-slot" className={styles.asideSlot}></aside>
-      <ResponsivePortal isOpen={isFiltersOpen} onClose={handleCloseMobile}>
+      
+      <ResponsivePortal
+        isOpen={isFiltersOpen}
+        onClose={handleCloseMobile}
+        style={{
+          position: 'absolute',
+          top: `${headerHeight}px`, 
+          right: 0, 
+          height: 'auto', 
+        }}
+      >
         <FiltersModal />
       </ResponsivePortal>
     </div>

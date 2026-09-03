@@ -1,16 +1,16 @@
 .wrapper {
   position: relative;
   width: 100%;
-  margin-bottom: 16px;
   display: flex;
 }
 
 .input {
   width: 100%;
-  padding: 8px 16px;
+  padding: 8px 16px 8px 52px;
   border: 1px solid $color-gray-300;
-  border-radius: $radius-lg;
-  font-size: 14px;
+  border-radius: $radius-2xl;
+  font-size: 16px;
+  line-height: 1.3;
 
   &:hover {
     opacity: 0.8;
@@ -24,4 +24,12 @@
     outline: none;
     box-shadow: 0 0 0 2px $color-blue-500;
   }
+}
+
+.searchIcon {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $color-black-900;
 }

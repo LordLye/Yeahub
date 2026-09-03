@@ -1,6 +1,6 @@
 .page {
-  display: flex;
-  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
   width: 100%;
   padding: 0 10px;
   margin-bottom: 20px;
@@ -15,7 +15,8 @@
   @include respond-to('desktop') {
     padding: 0 112px;
     margin-bottom: 90px;
-    gap: 20px
+    grid-template-columns: 1fr 392px;
+    gap: 24px;
   }
 }
 

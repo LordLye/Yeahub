@@ -1,13 +1,24 @@
 .wrapper {
-  padding: 0;
+  background-color: $color-footer-bg;
+  border-radius: $radius-2xl;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 320px;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  
 }
 
 .card {
-  background-color: $color-footer-bg;
   color: $color-white;
-  border-radius: $radius-2xl;
   padding: 24px 16px 16px 16px;
   text-align: start;
+  width: 100%;
 
   @include respond-to('tablet') {
     padding: 35px 30px 18px 30px;

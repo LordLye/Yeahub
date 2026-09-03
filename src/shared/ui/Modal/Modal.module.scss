@@ -3,15 +3,33 @@
   top: calc($header-height + 24px);
   left: 0;
   margin: 0;
-  padding: 24px;
-  padding-top: 48px;
+  padding: 48px 10px 20px 10px;
   width: 100%;
   max-width: none;
   max-height: none;
+  height: auto;
   border: 0;
   background-color: $color-white;
-  z-index: 40;
+  z-index: 100;
   box-sizing: border-box;
+  overflow-y: scroll;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include respond-to('tablet') {
+    width: 328px;
+    top: calc($header-height + 30px);
+    padding: 44px 16px 16px 16px;
+    right: 0;
+    left: auto;
+    height: fit-content;
+    overflow-y: visible;
+  }
 }
 
 .closeButton {
@@ -19,7 +37,7 @@
   top: 8px;
   right: 8px;
   padding: 8px;
-  color: $color-red-800;
+  color: $color-red-600;
   border: none;
   background: transparent;
   cursor: pointer;

@@ -1,14 +1,24 @@
 .header {
   min-height: $header-height;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px;
-  padding-right: 10px;
   background-color: $color-white;
   border-bottom: 1px solid $color-gray-200;
   z-index: 50;
   gap: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 320px;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 12px;
+  padding-right: 10px;
 
   @include respond-to('tablet') {
     padding: 15px 30px;
@@ -53,6 +63,7 @@
 }
 
 .titleGroup {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -150,6 +161,7 @@
     left: auto;
     min-width: 300px;
     width: fit-content;
+    height: fit-content;
     max-width: 80%;
     background-color: $color-modal-bg;
     border: 2px solid $color-purple-700;

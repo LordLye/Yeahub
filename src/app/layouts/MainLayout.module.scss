@@ -1,15 +1,21 @@
 .layout {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
+  display: grid;
+  min-height: 100dvh;
+  grid-template-rows: auto 1fr auto;
+  grid-gap: 20px;
 
   @include respond-to('tablet') {
-    gap: 24px;
+    grid-gap: 24px;
   }
 
   @include respond-to('desktop') {
-    gap: 40px;
+    grid-gap: 40px;
   }
+}
+
+.content {
+  width: 100%; 
+  min-width: 320px;
+  max-width: 1440px;
+  margin: 0 auto;
 }

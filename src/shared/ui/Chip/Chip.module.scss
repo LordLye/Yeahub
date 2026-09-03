@@ -1,11 +1,14 @@
 .chip {
-  padding: 8px 16px;
-  border-radius: $radius-xl;
+  padding: 6px 12px;
+  border-radius: $radius-lg;
   border: 1px solid $color-gray-300;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
   cursor: pointer;
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
   background: transparent;
+  color: $color-black-800;
 
   &:hover {
     background-color: $color-gray-100;
