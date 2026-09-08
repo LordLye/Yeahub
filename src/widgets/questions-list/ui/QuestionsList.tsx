@@ -17,7 +17,6 @@ export function QuestionsList() {
     );
 
     const { data: questionsData, isFetching, isLoading, isError } = useGetQuestionsQuery(queryParams);
-
     const prevDataRef = useRef(questionsData);
     if (questionsData) prevDataRef.current = questionsData;
     const displayData = questionsData ?? prevDataRef.current;
@@ -27,6 +26,7 @@ export function QuestionsList() {
     }
 
     const questions = displayData?.data || [];
+    console.log('3333questions', questions);
     const totalPages = Math.ceil((displayData?.total || 0) / (displayData?.limit || 1)) || 1;
 
     if (isError && !displayData) return <div className={styles.message}>Произошла ошибка при загрузке данных</div>;
@@ -43,6 +43,7 @@ export function QuestionsList() {
                             content={item.shortAnswer}
                             rate={item.rate}
                             complexity={item.complexity}
+                            id = {item.id}
                         />
                     </li>
                 ))}

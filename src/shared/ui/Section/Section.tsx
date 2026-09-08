@@ -13,7 +13,7 @@ export function Section({
     isLoading: boolean;
     expanded?: boolean;
     expandCount?: number;
-    children: React.ReactNode;
+    children: React.ReactNode[];
 }) {
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -35,7 +35,7 @@ export function Section({
                 </div>
             )}
 
-            {expanded && !isLoading && (
+            {expanded && children.length > expandCount && !isLoading && (
                 <p
                     onClick={() => toggleExpand()}
                     className={styles.expandLink}

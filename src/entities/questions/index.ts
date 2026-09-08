@@ -1,5 +1,3 @@
-import { useGetQuestionsQuery } from './api/questionsApi';
-import { QuestionCard } from './ui/QuestionCard';
-import { QuestionCardSkeleton } from './ui/QuestionCardSkeleton';
-
-export { useGetQuestionsQuery, QuestionCard, QuestionCardSkeleton };
+export {useGetQuestionsQuery} from './api/questionsApi';
+export {QuestionCard} from './ui/QuestionCard';
+export {QuestionCardSkeleton} from './ui/QuestionCardSkeleton';

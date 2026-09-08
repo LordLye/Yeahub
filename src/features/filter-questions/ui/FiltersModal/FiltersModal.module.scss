@@ -14,5 +14,7 @@
 
     @include respond-to('desktop') {
         padding: 10px;
+        border-radius: $radius-2xl;
+        padding: 24px;
     }
 }

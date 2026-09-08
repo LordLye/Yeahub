@@ -16,10 +16,10 @@
 
   &.active {
     border-color: $color-violet-500;
-    color: $color-violet-600;
 
     &:hover {
       background-color: transparent;
+      opacity: 0.8;
     }
   }
 }

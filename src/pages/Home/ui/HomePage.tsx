@@ -36,15 +36,15 @@ export function HomePage() {
       </div>
 
       <aside id="desktop-aside-slot" className={styles.asideSlot}></aside>
-      
+
       <ResponsivePortal
         isOpen={isFiltersOpen}
         onClose={handleCloseMobile}
         style={{
           position: 'absolute',
-          top: `${headerHeight}px`, 
-          right: 0, 
-          height: 'auto', 
+          top: `${headerHeight}px`,
+          right: 0,
+          height: 'auto',
         }}
       >
         <FiltersModal />

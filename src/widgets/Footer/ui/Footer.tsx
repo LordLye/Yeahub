@@ -1,16 +1,17 @@
 import { CircleIcon } from "@/shared/ui/CircleIcon";
 import styles from './Footer.module.scss';
 import { Icon } from "@/shared/ui/Icon";
+import { Link } from "react-router";
 
 export function Footer() {
     return (
-        <div className={styles.wrapper}>
+        <footer className={styles.wrapper}>
             <div className={styles.container}>
                 <div className={styles.card}>
                     <div className={styles.logoWrapper}>
                         <Icon name="yeahub" className={styles.logo} />
                     </div>
-                    
+
 
                     <p className={styles.subtitle}>
                         Выбери, каким будет IT завтра, вместе с нами
@@ -27,18 +28,33 @@ export function Footer() {
                         <span>Документы</span>
 
                         <div className={styles.icons}>
-                            <CircleIcon icon="figma" w={14} h={14} />
-                            <CircleIcon icon="telegram" w={20} h={20} bgColor="black" />
-                            <CircleIcon icon="youtube" w={20} h={20} bgColor="black" />
-                            <CircleIcon icon="linkedin" w={20} h={20} />
-                            <CircleIcon icon="github" w={20} h={20} bgColor="black" />
+                            <Link to="/" target="_blank" rel="noopener noreferrer">
+                                <CircleIcon icon="figma" w={14} h={14} />
+                            </Link>
+
+                            <Link to="/" target="_blank" rel="noopener noreferrer">
+                                <CircleIcon icon="telegram" w={20} h={20} bgColor="black" />
+                            </Link>
+
+                            <Link to="/" target="_blank" rel="noopener noreferrer">
+                                <CircleIcon icon="youtube" w={20} h={20} bgColor="black" />
+                            </Link>
+
+                            <Link to="/" target="_blank" rel="noopener noreferrer">
+                                <CircleIcon icon="linkedin" w={20} h={20} />
+                            </Link>
+
+                            <Link to="/" target="_blank" rel="noopener noreferrer">
+                                <CircleIcon icon="github" w={20} h={20} bgColor="black" />
+                            </Link>
+
                         </div>
                         <p className={styles.socialHint}>
-                        Ищите нас и в других соцсетях @yeahub_it
+                            Ищите нас и в других соцсетях @yeahub_it
                         </p>
                     </div>
                 </div>
             </div>
-        </div>
+        </footer>
     );
 }
