@@ -1,6 +1,6 @@
 .wrapper {
   background-color: $color-footer-bg;
-  border-radius: $radius-2xl;
+  border-radius: $radius-2xl $radius-2xl 0 0;
 }
 
 .container {

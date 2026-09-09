@@ -1,0 +1,63 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    text-align: start;
+
+    @include respond-to('tablet') {
+
+    }
+
+    @include respond-to('desktop') {
+        grid-template-columns: 1fr 392px;
+        gap: 20px;
+        grid-template-areas: 
+            "content meta"
+            "content banner";
+    }
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include respond-to('desktop') {
+        grid-area: content;
+    }
+}
+
+.backButton {
+    align-self: flex-start;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 4px;
+    font-weight: 500;
+    color: $color-purple-700;
+}
+
+.asideSlot {
+    background-color: $color-modal-bg;
+    border-radius: $radius-2xl;
+    border: 1px solid $color-purple-700;
+}
+
+.sidebar {
+    @include respond-to('desktop') {
+        grid-area: meta; /* Правый верхний угол */
+    }
+}
+
+.promoBanner {
+    @include respond-to('desktop') {
+        grid-area: banner; /* Правый нижний угол */
+    }
+}

@@ -21,11 +21,12 @@
   padding-right: 10px;
 
   @include respond-to('tablet') {
-    padding: 15px 30px;
+    padding: 15px 20px;
+    margin: 0 auto;
   }
 
   @include respond-to('desktop') {
-    padding: 15.5px 112px;
+    padding: 15.5px 30px;
   }
 }
 

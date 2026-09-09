@@ -13,7 +13,6 @@ export function Header() {
     const dispatch = useDispatch();
 
     // ИСПРАВЛЕНИЕ: Добавили защиту от undefined, если в store редюсер еще не инициализировался
-    const headerHeight = useSelector((state: any) => state.header?.headerHeight ?? 0);
     const headerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

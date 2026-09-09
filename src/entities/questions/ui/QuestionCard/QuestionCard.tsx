@@ -3,10 +3,12 @@ import { useState } from "react";
 import clsx from "clsx";
 import { MixedContentRenderer } from "@/shared/lib/utils/MixedContentRenderer";
 import styles from './QuestionCard.module.scss';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export function QuestionCard({text, content, rate, complexity, id}: {text: string; content: string; rate: number; complexity: string; id: number}) {
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
+    console.log(location);
 
     function toggle() {
         setIsOpen(!isOpen);
@@ -49,7 +51,7 @@ export function QuestionCard({text, content, rate, complexity, id}: {text: strin
                     <div className={styles.answer}>
                         {isOpen && <MixedContentRenderer dbText={content} />}
                     </div>
-                    <Link to={`/questions/${id}`} className={styles.moreButton}>
+                    <Link to={`/questions/${id}`} state={{ from: location }} className={styles.moreButton}>
                         <span className={styles.moreText}>
                             Подробнее
                         </span>
