@@ -8,15 +8,15 @@
   text-align: start;
 
   @include respond-to('tablet') {
-    padding: 0 30px;
+    padding: 4px 30px;
     margin-bottom: 56px;
   }
 
   @include respond-to('desktop') {
-    padding: 0 112px;
+    padding: 15px 112px;
     margin-bottom: 90px;
     grid-template-columns: 1fr 392px;
-    gap: 24px;
+    gap: 20px;
   }
 }
 

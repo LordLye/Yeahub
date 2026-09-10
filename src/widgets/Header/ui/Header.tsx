@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import SelectTitles from "@/features/selectTitles/ui/SelectTitles";
 import clsx from "clsx";
 import { setHeaderHeight } from "../Model/slice";
+import { Link } from "react-router-dom";
 
 export function Header() {
     const dispatch = useDispatch();
@@ -74,9 +75,11 @@ export function Header() {
             <div className={styles.container}>
                 <div className={styles.left}>
                     <div className={styles.logoWrapper}>
-                        <Icon name="logo" className={styles.logo} />
+                        <Link to="/" className={styles.logoWrapperLink}>
+                            <Icon name="logo" className={styles.logo} />
+                            <Icon name="yeahub" className={styles.logoYeahub} />
+                        </Link>
                     </div>
-                    <Icon name="yeahub" className={styles.logoYeahub} />
                     <div className={styles.titleGroup}>
                         <div className={styles.selectModalDesktop}>
                             <SelectTitles />

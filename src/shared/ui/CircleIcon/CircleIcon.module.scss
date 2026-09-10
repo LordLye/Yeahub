@@ -14,11 +14,15 @@
   cursor: pointer;
   border-radius: 50%;
 
-  &.bgBlack {
+  &.black {
     background-color: $color-black;
   }
 
-  &.bgWhite {
+  &.white {
     background-color: $color-white;
+  }
+
+  &.purple {
+    background-color: $color-purple-700;
   }
 }

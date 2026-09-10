@@ -5,11 +5,11 @@
   grid-gap: 20px;
 
   @include respond-to('tablet') {
-    grid-gap: 24px;
+    grid-gap: 20px;
   }
 
   @include respond-to('desktop') {
-    grid-gap: 40px;
+    grid-gap: 25px;
   }
 }
 

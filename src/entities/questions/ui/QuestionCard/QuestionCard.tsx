@@ -8,7 +8,6 @@ import { Link, useLocation } from "react-router-dom";
 export function QuestionCard({text, content, rate, complexity, id}: {text: string; content: string; rate: number; complexity: string; id: number}) {
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
-    console.log(location);
 
     function toggle() {
         setIsOpen(!isOpen);

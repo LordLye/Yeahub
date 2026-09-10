@@ -9,7 +9,8 @@
     text-align: start;
 
     @include respond-to('tablet') {
-
+        padding: 0 30px;
+        margin-bottom: 60px;
     }
 
     @include respond-to('desktop') {
@@ -18,13 +19,18 @@
         grid-template-areas: 
             "content meta"
             "content banner";
+        margin-bottom: 105px;
     }
 }
 
 .mainContent {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
+
+    @include respond-to('tablet') {
+        gap: 20px;
+    }
 
     @include respond-to('desktop') {
         grid-area: content;
@@ -42,16 +48,41 @@
     padding: 4px;
     font-weight: 500;
     color: $color-purple-700;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.6;
+    }
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include respond-to('tablet') {
+        gap: 20px;
+    }
 }
 
 .asideSlot {
     background-color: $color-modal-bg;
     border-radius: $radius-2xl;
-    border: 1px solid $color-purple-700;
+    gap: 20px;
+
+    @include respond-to('desktop') {
+        margin-top: 52px;
+    }
 }
 
 .sidebar {
+    display : none; /* На мобильных сайдбар полностью скрыт и не занимает место */
+
     @include respond-to('desktop') {
+        display: block;
         grid-area: meta; /* Правый верхний угол */
     }
 }
@@ -61,3 +92,4 @@
         grid-area: banner; /* Правый нижний угол */
     }
 }
+

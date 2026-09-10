@@ -45,7 +45,23 @@
 }
 
 .logoWrapper {
-  color: $color-logo-black;
+  & .logoYeahub {
+    color: $color-logo-black;
+  }
+}
+
+.logoWrapperLink {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  @include respond-to('tablet') {
+    gap: 10px;
+  }
+
+  @include respond-to('desktop') {
+    gap: 8px;
+  }
 }
 
 .logo {

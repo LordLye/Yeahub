@@ -6,7 +6,7 @@ interface CircleIconProps {
     icon: string;
     w?: number;
     h?: number;
-    bgColor?: "black" | "white";
+    bgColor?: "black" | "white" | "purple";
 }
 
 export function CircleIcon({ icon, w = 24, h = 24, bgColor = "white" }: CircleIconProps) {
@@ -16,7 +16,7 @@ export function CircleIcon({ icon, w = 24, h = 24, bgColor = "white" }: CircleIc
                 name={icon}
                 className={clsx(
                     styles.icon,
-                    bgColor === "black" ? styles.bgBlack : styles.bgWhite,
+                    bgColor === "black" && styles.black || bgColor === "white" && styles.white || bgColor === "purple" && styles.purple,
                 )}
                 style={{ width: w, height: h }}
             />
