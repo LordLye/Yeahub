@@ -2,8 +2,8 @@ import styles from "./FiltersModal.module.scss";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { Section } from "@/shared/ui/Section";
-import { Chip } from "@/shared/ui/Chip";
+import { Section } from "@/shared/ui/section";
+import { Chip } from "@/shared/ui/chip";
 import { SearchInput } from "../SearchInput";
 
 import { LEVELS, RATINGS, STATUSES } from "@/shared/constants/filters";

@@ -4,11 +4,12 @@ import { ChevronLeft } from 'lucide-react';
 import { QuestionNavigation } from '@/features/navigate-questions';
 import { QuestionAnswers, QuestionHeaderCard } from '@/entities/questions';
 import { useGetQuestionByIdQuery } from '@/entities/questions/api/questionsApi';
-import { ResponsivePortal } from '@/shared/ui/responsivePortal/ResponsivePortal';
+import { ResponsivePortal } from '@/shared/ui/responsive-portal/ResponsivePortal';
 import { FiltersModal } from '@/features/filter-questions';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { PromoBanner } from '@/widgets/promoBanner';
+import { PromoBanner } from '@/widgets/promo-banner';
+import { QuestionInfo } from '@/widgets/question-info';
 
 export function QuestionPage() {
     const { id } = useParams<{ id?: string }>();
@@ -59,8 +60,7 @@ export function QuestionPage() {
                     </div>
                 </div>
                 <aside className={styles.asideSlot} >
-                    <div className={styles.sidebar} id="desktop-aside-slot">
-                    </div>
+                    <div className={styles.sidebar} id="desktop-aside-slot"></div>
                     <PromoBanner className={styles.promoBanner} />
                 </aside>
 
@@ -73,8 +73,9 @@ export function QuestionPage() {
                         right: 0,
                         height: 'auto',
                     }}
+                    className={styles.infoModal}
                 >
-                    <FiltersModal />
+                    <QuestionInfo data={question} isLoading={isLoading} />
                 </ResponsivePortal>
             </div>
         </section>

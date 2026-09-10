@@ -1,4 +1,4 @@
-import { Icon } from '@/shared/ui/Icon';
+import { Icon } from '@/shared/ui/icon';
 import styled from './QuestionHeaderCard.module.scss'
 import questionImage from "@/shared/assets/images/questionImage.png";
 

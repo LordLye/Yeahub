@@ -1,13 +1,13 @@
 import { Menu, ChevronDown } from "lucide-react";
-import { Icon } from '@/shared/ui/Icon';
+import { Icon } from '@/shared/ui/icon';
 import styles from './Header.module.scss';
 import { AuthActions, closeAuthMenu, openAuthMenu, selectIsAuthMenuOpen } from "@/features/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal } from "@/shared/ui/Modal/Modal";
+import { Modal } from "@/shared/ui/modal/Modal";
 import { useEffect, useRef, useState } from "react";
 import SelectTitles from "@/features/selectTitles/ui/SelectTitles";
 import clsx from "clsx";
-import { setHeaderHeight } from "../Model/slice";
+import { setHeaderHeight } from "../model/slice";
 import { Link } from "react-router-dom";
 
 export function Header() {

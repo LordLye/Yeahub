@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { baseApi } from "../../shared/api/baseApi";
 import { productFilterReducer } from "@/features/filter-questions";
 import { authReducer } from "@/features/auth";
-import { headerReducer } from "@/widgets/Header";
+import { headerReducer } from "@/widgets/header";
 
 
 export const store = configureStore({

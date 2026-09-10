@@ -1,1 +1,0 @@
-export { questionInfo } from './ui/questionInfo';

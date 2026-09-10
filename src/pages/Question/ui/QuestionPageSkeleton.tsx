@@ -1,4 +1,4 @@
-import Skeleton from '@/shared/ui/Skeleton';
+import Skeleton from '@/shared/ui/skeleton';
 import styles from './QuestionPage.module.scss';
 
 export function QuestionPageSkeleton() {

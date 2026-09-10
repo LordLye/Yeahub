@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Modal } from '@/shared/ui/Modal/Modal';
+import { Modal } from '@/shared/ui/modal/Modal';
 import { useSelector } from 'react-redux';
 
 interface ResponsivePortalProps {

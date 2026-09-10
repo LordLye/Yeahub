@@ -1,7 +1,7 @@
 import { useMemo, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { QuestionCard, useGetQuestionsQuery } from "@/entities/questions";
-import { Pagination } from "@/shared/ui/Pagination/Pagination";
+import { Pagination } from "@/shared/ui/pagination/Pagination";
 import styles from './QuestionsList.module.scss';
 import { QuestionListSkeleton } from "./QuestionListSkeleton";
 

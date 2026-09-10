@@ -1,12 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { MainLayout } from '@/app/layouts/MainLayout';
 import React, { Suspense } from 'react';
-import { HomePageSkeleton } from '@/pages/Home'; 
-import { QuestionCardSkeleton } from '@/entities/questions/ui/QuestionCard/QuestionCardSkeleton';
-import { NotFoundPage } from '@/pages/NotFoundPage';
+import { HomePageSkeleton } from '@/pages/home'; 
+import { QuestionCardSkeleton } from '@/entities/questions/ui/question-card/QuestionCardSkeleton';
+import { NotFoundPage } from '@/pages/not-found-page';
 
-const HomePageLazy = React.lazy(() => import('@/pages/Home').then(module => ({ default: module.HomePage })));
-const QuestionPageLazy = React.lazy(() => import('@/pages/Question').then(module => ({ default: module.QuestionPage })));
+const HomePageLazy = React.lazy(() => import('@/pages/home').then(module => ({ default: module.HomePage })));
+const QuestionPageLazy = React.lazy(() => import('@/pages/question').then(module => ({ default: module.QuestionPage })));
 
 
 const router = createBrowserRouter([

@@ -12,35 +12,54 @@
         }
     }
 
-    h1,h2,h3,h4,h5,h6{
+    h1, h2, h3, h4, h5, h6 {
         margin-bottom: 6px;
     }
 
+    /* ОБЪЕДИНЕННЫЙ И ИСПРАВЛЕННЫЙ БЛОК PRE */
     pre {
         background-color: #1e1e1e;
         color: #d4d4d4;
         padding: 16px;
         border-radius: $radius-md;
-        overflow-x: auto;
         margin: 0 0 16px 0;
+        box-sizing: border-box;
+
+        /* Заставляем pre переносить длинные строки */
+        white-space: pre-wrap !important;
+        word-break: break-all; 
+        word-wrap: break-word;
+
+        /* Ограничиваем контейнер, чтобы не вылезал */
+        max-width: 100%;
+        width: 100%;
+        overflow-x: auto; /* Появится скролл, если встретится неразрывный элемент */
 
         @include respond-to('tablet') {
             margin: 0 0 24px 0;
         }
+
+        /* Стили для тега code, который находится СТРОГО внутри pre */
+        code {
+            white-space: inherit;
+            word-break: inherit;
+            word-wrap: inherit;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: transparent; // Защита от наследования инлайновых стилей
+            padding: 0;
+            color: inherit;
+        }
     }
 
-    pre,
-    code {
-        white-space: pre-wrap !important;
-        word-wrap: break-word;
-        font-family: 'Courier New', Courier, monospace;
-    }
-
-    :not(pre)>code {
+    /* ИСПРАВЛЕННЫЙ СЕЛЕКТОР ДЛЯ ИНЛАЙНОВОГО CODE (вне блока pre) */
+    /* Используем амперсанд &, чтобы компилятор правильно построил цепочку */
+    code:not(pre code) {
         background-color: #f0f0f0;
         color: #cd3131;
         padding: 2px 6px;
         border-radius: $radius-sm;
+        font-family: 'Courier New', Courier, monospace;
+        word-break: break-word;
     }
 
     :last-child {

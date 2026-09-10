@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from './Section.module.scss';
-import Skeleton from "../Skeleton";
+import Skeleton from "../skeleton";
 
 export function Section({
     title,

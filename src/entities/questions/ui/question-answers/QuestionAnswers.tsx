@@ -39,7 +39,7 @@ export function QuestionAnswers({ question }: any) {
         <section className={styles.container}>
             <div className={styles.answerContainer}>
                 <h2 className={styles.title}>Краткий ответ</h2>
-                <div className={styles.answer}>
+                <div className={styles.shortAnswer}>
                     <MixedContentRenderer dbText={question.shortAnswer} />
                 </div>
             </div>

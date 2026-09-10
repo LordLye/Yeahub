@@ -1,4 +1,4 @@
-import { Icon } from '@/shared/ui/Icon';
+import { Icon } from '@/shared/ui/icon';
 import styles from './HomePage.module.scss';
 import { QuestionListSkeleton } from '@/widgets/questions-list';
 
