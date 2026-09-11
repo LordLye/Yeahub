@@ -1,0 +1,60 @@
+.container {
+    padding: 16px 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background: $color-white;
+    border-radius: $radius-lg;
+    box-shadow: 0px 4px 10px 0px rgba(106, 99, 118, 0.102);
+
+    @include respond-to('tablet') {
+        gap: 4px;
+    }
+}
+
+.button {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.6;
+    }
+
+    @include respond-to('tablet') {
+        gap: 8px;
+        padding: 12px 17.5px;
+    }
+
+    &.disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+}
+
+.text {
+    font-size: 14px;
+    color: $color-black-800;
+
+    @include respond-to('tablet') {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.1;
+    }
+}
+
+.icon {
+    min-width: 7px;
+    min-height: 13px;
+    color: $color-black-600;
+    opacity: 0.6;
+}

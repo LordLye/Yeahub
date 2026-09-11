@@ -1,0 +1,27 @@
+.filtersModalWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background-color: $color-white;
+    z-index: 100;
+    height: auto;
+    max-height: fit-content;
+    max-height: 100%; 
+
+    @include respond-to('tablet') {
+        height: auto;
+    }
+
+    @include respond-to('desktop') {
+        padding: 10px;
+        border-radius: $radius-2xl;
+        padding: 24px;
+    }
+}
+
+.skillWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}

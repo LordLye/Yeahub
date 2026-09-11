@@ -10,7 +10,14 @@ export const questionApi = baseApi.injectEndpoints({
             }),
             providesTags: ["Question"],
         }),
+        getQuestionById: builder.query< any, number>({
+            query: (id) => ({
+                url: `/questions/public-questions/${id}`,
+                method: "GET",
+            }),
+            providesTags: ["Question"],
+        })
     }),
 });
 
-export const { useGetQuestionsQuery } = questionApi;
+export const { useGetQuestionsQuery, useGetQuestionByIdQuery } = questionApi;

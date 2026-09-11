@@ -4,6 +4,16 @@
   justify-content: center;
   gap: 10px;
   padding: 10px;
+
+  @include respond-to('tablet') {
+    padding: 0 16px;
+    margin-bottom: 30px;
+  }
+
+  @include respond-to('desktop') {
+    padding: 0 20px;
+    margin-bottom: 16px;
+  }
 }
 
 .navButton {
@@ -17,6 +27,14 @@
   color: $color-purple-600;
   cursor: pointer;
   background: transparent;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
 
   &:disabled {
     opacity: 0.4;

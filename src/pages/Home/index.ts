@@ -1,4 +1,2 @@
-import { HomePage } from './ui/HomePage';
-import { HomePageSkeleton } from './ui/HomePageSkeleton';
-
-export { HomePage, HomePageSkeleton };
+export { HomePage } from './ui/HomePage';
+export { HomePageSkeleton } from './ui/HomePageSkeleton';

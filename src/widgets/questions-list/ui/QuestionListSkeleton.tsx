@@ -1,4 +1,4 @@
-import { PaginationSkeleton } from '@/shared/ui/Pagination';
+import { PaginationSkeleton } from '@/shared/ui/pagination';
 import styles from './QuestionsList.module.scss';
 import { QuestionCardSkeleton } from '@/entities/questions';
 

@@ -1,5 +1,6 @@
-import { useGetQuestionsQuery } from './api/questionsApi';
-import { QuestionCard } from './ui/QuestionCard';
-import { QuestionCardSkeleton } from './ui/QuestionCardSkeleton';
+export {useGetQuestionsQuery} from './api/questionsApi';
+export {QuestionCard} from './ui/question-card/QuestionCard';
+export {QuestionCardSkeleton} from './ui/question-card/QuestionCardSkeleton';
 
-export { useGetQuestionsQuery, QuestionCard, QuestionCardSkeleton };
+export { QuestionHeaderCard } from './ui/question-header-card/QuestionHeaderCard';
+export { QuestionAnswers } from './ui/question-answers/QuestionAnswers';

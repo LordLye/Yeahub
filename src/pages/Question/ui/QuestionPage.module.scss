@@ -1,0 +1,111 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    text-align: start;
+
+    @include respond-to('tablet') {
+        padding: 0 30px;
+        margin-bottom: 60px;
+    }
+
+    @include respond-to('desktop') {
+        grid-template-columns: 1fr 392px;
+        gap: 20px;
+        grid-template-areas: 
+            "content meta"
+            "content banner";
+        margin-bottom: 105px;
+    }
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include respond-to('tablet') {
+        gap: 20px;
+    }
+
+    @include respond-to('desktop') {
+        grid-area: content;
+    }
+}
+
+.backButton {
+    align-self: flex-start;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 4px;
+    font-weight: 500;
+    color: $color-purple-700;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.6;
+    }
+
+    & svg {
+        min-width: 24px;
+    }
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include respond-to('tablet') {
+        gap: 20px;
+    }
+}
+
+.asideSlot {
+    background-color: $color-modal-bg;
+    border-radius: $radius-2xl;
+    gap: 20px;
+
+    @include respond-to('desktop') {
+        margin-top: 52px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background-color: $color-background;
+    }
+}
+
+.sidebar {
+    display : none; /* На мобильных сайдбар полностью скрыт и не занимает место */
+
+    @include respond-to('desktop') {
+        background-color: $color-white;
+        border-radius: $radius-2xl;
+        display: block;
+        grid-area: meta; /* Правый верхний угол */
+    }
+}
+
+.promoBanner {
+    @include respond-to('desktop') {
+        grid-area: banner; /* Правый нижний угол */
+    }
+}
+
+.infoModal {
+    @include respond-to('tablet') {
+        padding: 24px;
+    }
+}
+

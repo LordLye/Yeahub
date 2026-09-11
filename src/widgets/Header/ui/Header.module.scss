@@ -1,19 +1,67 @@
 .header {
   min-height: $header-height;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px;
-  padding-right: 10px;
   background-color: $color-white;
   border-bottom: 1px solid $color-gray-200;
   z-index: 50;
+  gap: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 320px;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 12px;
+  padding-right: 10px;
+
+  @include respond-to('tablet') {
+    padding: 15px 20px;
+    margin: 0 auto;
+  }
+
+  @include respond-to('desktop') {
+    padding: 15.5px 30px;
+  }
 }
 
 .left {
   display: flex;
   align-items: center;
   gap: 20px;
+
+  @include respond-to('tablet') {
+    gap: 10px;
+  }
+
+  @include respond-to('desktop') {
+    gap: 8px;
+  }
+}
+
+.logoWrapper {
+  & .logoYeahub {
+    color: $color-logo-black;
+  }
+}
+
+.logoWrapperLink {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  @include respond-to('tablet') {
+    gap: 10px;
+  }
+
+  @include respond-to('desktop') {
+    gap: 8px;
+  }
 }
 
 .logo {
@@ -21,20 +69,79 @@
   height: 33px;
 }
 
+.logoYeahub {
+  display: none;
+  width: 95px;
+
+  @include respond-to('tablet') {
+    display: block;
+    margin-right: 26px;
+  }
+}
+
 .titleGroup {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 6px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+}
+
+.selectModalDesktop {
+  display: none;
+
+  @include respond-to('desktop') {
+    display: block;
+  }
+}
+
+.selectModalMobile {
+  display: block;
+  position: relative;
+  border-radius: 16px;
+
+  @include respond-to('desktop') {
+    display: none;
+  }
 }
 
 .title {
   font-size: 16px;
   font-weight: 500;
   color: $color-black-900;
+
+  @include respond-to('desktop') {
+    display: none;
+  }
 }
 
 .chevron {
   color: $color-gray-500;
+  transition: transform 0.2s ease-in-out;
+  min-width: 24px;
+
+  &.open {
+    transform: rotate(180deg);
+  }
+
+  @include respond-to('desktop') {
+    display: none;
+  }
 }
 
 .menuButton {
@@ -44,12 +151,44 @@
   background: transparent;
   cursor: pointer;
   transition: background-color 0.2s;
+  display: flex;
 
   &:hover {
     background-color: $color-gray-100;
+  }
+
+  @include respond-to('desktop') {
+    display: none;
   }
 }
 
 .menuIcon {
   color: $color-gray-800;
+}
+
+.desktopAuth {
+  display: none;
+
+  @include respond-to('desktop') {
+    display: block;
+  }
+}
+
+.mobileAuthModal {
+  &.mobileAuthModal {
+    position: absolute;
+    left: auto;
+    min-width: 300px;
+    width: fit-content;
+    height: fit-content;
+    max-width: 80%;
+    background-color: $color-modal-bg;
+    border: 2px solid $color-purple-700;
+    border-radius: 16px;
+    padding: 12px 16px;
+
+    @include respond-to('desktop') {
+      display: none;
+    }
+  }
 }

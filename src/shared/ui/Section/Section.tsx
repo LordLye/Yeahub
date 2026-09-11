@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from './Section.module.scss';
-import Skeleton from "../Skeleton";
+import Skeleton from "../skeleton";
 
 export function Section({
     title,
@@ -13,7 +13,7 @@ export function Section({
     isLoading: boolean;
     expanded?: boolean;
     expandCount?: number;
-    children: React.ReactNode;
+    children: React.ReactNode[];
 }) {
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -35,7 +35,7 @@ export function Section({
                 </div>
             )}
 
-            {expanded && !isLoading && (
+            {expanded && children.length > expandCount && !isLoading && (
                 <p
                     onClick={() => toggleExpand()}
                     className={styles.expandLink}
@@ -45,9 +45,9 @@ export function Section({
             )}
 
             {expanded && isLoading && (
-                <p className={styles.expandLink}>
+                <div className={styles.expandLink}>
                     <Skeleton width="100px" height="16px" />
-                </p>
+                </div>
             )}
         </div>
     );

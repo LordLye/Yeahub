@@ -1,19 +1,56 @@
 .page {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
   padding: 0 10px;
   margin-bottom: 20px;
+  box-sizing: border-box;
   text-align: start;
 
-  > * + * {
-    margin-top: 16px;
+  @include respond-to('tablet') {
+    padding: 4px 30px;
+    margin-bottom: 56px;
   }
+
+  @include respond-to('desktop') {
+    padding: 15px 112px;
+    margin-bottom: 90px;
+    grid-template-columns: 1fr 392px;
+    gap: 20px;
+  }
+}
+
+.asideSlot {
+  display: none; /* На мобильных сайдбар полностью скрыт и не занимает место */
+
+  @include respond-to('desktop') {
+    display: block;
+    width: 392px;
+    flex-shrink: 0;
+    background-color: #f9f9f9; /* Ваши стили для сайдбара */
+    border-right: 1px solid #eaeaea;
+  }
+}
+
+.content {
+  flex: 1;
 }
 
 .card {
   padding: 10px;
-  padding-top: 16px;
+  padding-top: 20px;
   border-radius: $radius-2xl;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   background-color: $color-white;
+  flex-grow: 1;
+
+  @include respond-to('tablet') {
+    padding: 16px;
+  }
+
+  @include respond-to('desktop') {
+    padding: 24px 20px;
+  }
 }
 
 .content {
@@ -22,12 +59,61 @@
   background-color: $color-white;
 }
 
+.titleWrapper {
+  border-bottom: 1px solid $color-gray-200;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  padding-bottom: 8px;
+  margin: 0 0 24px 0;
+  display: flex;
+  justify-content: space-between;
+
+  @include respond-to('tablet') {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  @include respond-to('desktop') {
+    padding-bottom: 17px;
+    margin-bottom: 24px;
+  }
+}
+
+.filterIcon {
+  min-width: 20px;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  border: 1px solid $color-gray-300;
+  border-radius: $radius-md;
+  color: $color-black-700;
+  cursor: pointer;
+  transition: color 0.3s;
+  display: block;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+
+  @include respond-to('tablet') {
+    width: 24px;
+    height: 24px;
+  }
+
+  @include respond-to('desktop') {
+    display: none;
+  }
+}
+
 .title {
   font-size: 20px;
   line-height: 1.2;
   font-weight: 500;
-  padding-bottom: 8px;
-  margin: 9px 0 24px 0;
-  border-bottom: 1px solid $color-gray-200;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  @include respond-to('tablet') {
+    font-size: 24px;
+  }
 }

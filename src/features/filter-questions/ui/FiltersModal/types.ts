@@ -9,6 +9,7 @@ type ActiveState = {
 	specializationId: string[];
 	rate: string[];
 	complexity: string[];
+	titleOrDescription: string;
 };
 
 type SearchParamsLike = {
@@ -24,6 +25,7 @@ interface SpecializationItem {
 interface SkillsItem {
 	id: number;
 	title: string;
+	imageSrc?: string;
 }
 
 export type { FiltersModalProps, ActiveState, SearchParamsLike, SpecializationItem, SkillsItem };

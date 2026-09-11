@@ -1,4 +1,4 @@
-import Skeleton from "../Skeleton";
+import Skeleton from "../skeleton";
 import styles from "./Pagination.module.scss";
 
 export function PaginationSkeleton() {

@@ -1,0 +1,44 @@
+/* 1. Включаем правильный расчет размеров ( border + padding входят в width) */
+/* *,
+*::before,
+*::after {
+    box-sizing: border-box;
+} */
+
+/* 2. Убираем марджины у элементов, где они чаще всего мешают */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+/* 3. Облегчаем работу со списками, если используете их как контейнеры */
+ul[class],
+ol[class] {
+    list-style: none;
+    padding: 0;
+}
+
+/* 4. Делаем картинки послушными */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* 5. Наследуем шрифты для инпутов и кнопок */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
