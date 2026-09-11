@@ -1,17 +1,34 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import styled from './QuestionNavigation.module.scss'
+import styles from './QuestionNavigation.module.scss';
+import clsx from 'clsx';
 
-export function QuestionNavigation() {
+interface QuestionNavigationProps {
+    onPrev: () => void;
+    onNext: () => void;
+    isDisabled: boolean;
+}
+
+export function QuestionNavigation({ onPrev, onNext, isDisabled }: QuestionNavigationProps) {
     return (
-        <section className={styled.container}>
-            <button className={styled.button}>
-                <ChevronLeft className={styled.icon}/>
-                <span className={styled.text}>Предыдущий</span>
+        <section className={styles.container}>
+            <button 
+                type="button"
+                className={clsx(styles.button, isDisabled && styles.disabled)} 
+                onClick={onPrev}
+                disabled={isDisabled}
+            >
+                <ChevronLeft className={styles.icon} />
+                <span className={styles.text}>Предыдущий</span>
             </button>
-            
-            <button className={styled.button}>
-                <span className={styled.text}>Следующий</span>
-                <ChevronRight className={styled.icon}/>
+
+            <button 
+                type="button"
+                className={clsx(styles.button, isDisabled && styles.disabled)} 
+                onClick={onNext}
+                disabled={isDisabled}
+            >
+                <span className={styles.text}>Следующий</span>
+                <ChevronRight className={styles.icon} />
             </button>
         </section>
     );

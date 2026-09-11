@@ -3,6 +3,7 @@ import useQueryFilters from "@/shared/lib/hooks/useQueryFilters";
 import { getPagination } from "@/shared/lib/utils/usePagination";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import styles from './Pagination.module.scss';
+import { useEffect } from "react";
 
 interface PaginationProps {
     totalPages: number;
@@ -12,6 +13,10 @@ export function Pagination({ totalPages }: PaginationProps) {
     const { params, setParam } = useQueryFilters();
     const currentPage = Number(params.get("page") || 1);
     const items = getPagination(currentPage, totalPages, 2);
+
+    useEffect(() => {
+        setParam("page", String(currentPage), false);
+    }, [params]);
 
     const handlerAddParams = (event: React.MouseEvent<HTMLDivElement>) => {
         const target = event.target as HTMLElement;

@@ -72,6 +72,10 @@
     &:active {
         opacity: 0.6;
     }
+
+    @include respond-to('desktop') {
+        display: none;
+    }
 }
 
 .description {

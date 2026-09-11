@@ -113,6 +113,7 @@
 .selectModalMobile {
   display: block;
   position: relative;
+  border-radius: 16px;
 
   @include respond-to('desktop') {
     display: none;
@@ -132,6 +133,7 @@
 .chevron {
   color: $color-gray-500;
   transition: transform 0.2s ease-in-out;
+  min-width: 24px;
 
   &.open {
     transform: rotate(180deg);

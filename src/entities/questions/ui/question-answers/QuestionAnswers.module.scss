@@ -71,8 +71,13 @@
     color: $color-black-800;
 
     &:hover {
-        background: $color-gray-100;
+        background: linear-gradient(180deg, transparent 0%, $color-gray-100 40%);
+
         & span {
+            opacity: 0.8;
+        }
+
+        & svg {
             opacity: 0.8;
         }
     }
@@ -81,11 +86,37 @@
         & span {
             opacity: 0.6;
         }
+
+        & svg {
+            opacity: 0.6;
+        }
     }
 
     &.open {
         position: relative;
         background: transparent;
+
+        &:hover {
+            background: linear-gradient(180deg, transparent 0%, $color-gray-100 40%);
+
+            & span {
+                opacity: 0.8;
+            }
+
+            & svg {
+                opacity: 0.8;
+            }
+        }
+
+        &:active {
+            & span {
+                opacity: 0.6;
+            }
+
+            & svg {
+                opacity: 0.6;
+            }
+        }
     }
 
     @include respond-to('tablet') {

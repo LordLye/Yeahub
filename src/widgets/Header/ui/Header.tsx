@@ -5,7 +5,7 @@ import { AuthActions, closeAuthMenu, openAuthMenu, selectIsAuthMenuOpen } from "
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "@/shared/ui/modal/Modal";
 import { useEffect, useRef, useState } from "react";
-import SelectTitles from "@/features/selectTitles/ui/SelectTitles";
+import SelectTitles from "@/features/select-titles/ui/SelectTitles";
 import clsx from "clsx";
 import { setHeaderHeight } from "../model/slice";
 import { Link } from "react-router-dom";

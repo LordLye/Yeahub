@@ -25,6 +25,7 @@ interface SpecializationItem {
 interface SkillsItem {
 	id: number;
 	title: string;
+	imageSrc?: string;
 }
 
 export type { FiltersModalProps, ActiveState, SearchParamsLike, SpecializationItem, SkillsItem };

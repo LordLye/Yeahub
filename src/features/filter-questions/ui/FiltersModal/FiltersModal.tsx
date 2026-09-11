@@ -10,6 +10,8 @@ import { LEVELS, RATINGS, STATUSES } from "@/shared/constants/filters";
 import { useGetSkillsQuery, useGetSpecializationsQuery } from "../../api/filterApi";
 
 import type { ActiveState, SearchParamsLike, SpecializationItem, SkillsItem } from "./types";
+import { ChipImage } from "@/shared/ui/chip-image/ChipImage";
+import { Icon } from "@/shared/ui/icon";
 
 export function FiltersModal() {
 	const getInitialState = (params: SearchParamsLike): ActiveState => {
@@ -208,7 +210,14 @@ export function FiltersModal() {
 				active={active.skills.includes(String(item.id))}
 				onClick={() => toggle("skills", String(item.id))}
 			>
-				{item.title}
+				<div className={styles.skillWrapper}>
+					<ChipImage
+						src={item.imageSrc}
+						alt={item.title}
+						fallback={<Icon name="defaultSkillIcon" w={28} h={28} />}
+					/>
+					{item.title}
+				</div>
 			</Chip>
 		));
 	}, [skills, active.skills, toggle]);

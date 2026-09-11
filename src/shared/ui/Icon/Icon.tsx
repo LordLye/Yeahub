@@ -1,5 +1,5 @@
 import clsx from "clsx";
-// Добавляем ?react к каждому импорту, чтобы Vite отдавал их как компоненты
+
 import FigmaIcon from '@/shared/assets/icons/figma.svg?react';
 import GithubIcon from '@/shared/assets/icons/github.svg?react';
 import LinkedinIcon from '@/shared/assets/icons/linkedin.svg?react';
@@ -10,8 +10,8 @@ import YeahubIcon from '@/shared/assets/icons/yeahub.svg?react';
 import styles from './Icon.module.scss';
 import FilterIcon from '@/shared/assets/icons/filterIcon.svg?react';
 import InfoMenu from '@/shared/assets/icons/infoMenu.svg?react';
+import defaultSkillIcon from '@/shared/assets/icons/defaultSkillIcon.svg?react';
 
-// Типизируем как массив React-компонентов, принимающих SVG-пропсы
 const iconTypes: Record<string, React.FunctionComponent<React.SVGProps<SVGSVGElement>>> = {
     figma: FigmaIcon,
     github: GithubIcon,
@@ -22,6 +22,7 @@ const iconTypes: Record<string, React.FunctionComponent<React.SVGProps<SVGSVGEle
     yeahub: YeahubIcon,
     filterIcon: FilterIcon,
     infoMenu: InfoMenu,
+    defaultSkillIcon: defaultSkillIcon,
 };
 
 export const Icon = ({ name, className = '', ...props }: { name: string; className?: string; [key: string]: unknown }) => {
@@ -29,7 +30,6 @@ export const Icon = ({ name, className = '', ...props }: { name: string; classNa
 
     if (!SelectedIcon) return null;
 
-    // Рендерим SVG как полноценный компонент, теперь currentColor из SCSS сработает!
     return (
         <SelectedIcon
             className={clsx(styles.icon, className)}

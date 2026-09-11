@@ -7,7 +7,7 @@ export function QuestionInfo({data, isLoading} : any) {
     const memoizedSkills = useMemo(() => {
             return data.questionSkills
             .map((item: any) => (
-                <div className={styles.skillWrapper}>
+                <div key={item.id} className={styles.skillWrapper}>
                     <Icon name="figma" className={styles.icon}/>
                     <p className={styles.skill}>{item.title}</p>
                 </div>
@@ -17,7 +17,7 @@ export function QuestionInfo({data, isLoading} : any) {
         const memoizedKeyWords = useMemo(() => {
             return data.keywords
             .map((item: any) => (
-                <p className={styles.keyword}>#{item}</p>
+                <p key={`${item}+${Math.random()}`} className={styles.keyword}>#{item}</p>
             ));
         }, [data]);
 

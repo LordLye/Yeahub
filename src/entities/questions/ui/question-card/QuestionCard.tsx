@@ -50,7 +50,7 @@ export function QuestionCard({text, content, rate, complexity, id}: {text: strin
                     <div className={styles.answer}>
                         {isOpen && <MixedContentRenderer dbText={content} />}
                     </div>
-                    <Link to={`/questions/${id}`} state={{ from: location }} className={styles.moreButton}>
+                    <Link to={`/questions/${id}${location.search}`} state={{ from: location }} className={styles.moreButton}>
                         <span className={styles.moreText}>
                             Подробнее
                         </span>

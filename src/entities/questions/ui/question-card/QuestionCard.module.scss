@@ -72,8 +72,8 @@
 }
 
 .chevron {
-  width: 24px;
-  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
   color: $color-purple-700;
   transition: transform 0.3s;
 
@@ -204,4 +204,6 @@
 
 .moreIcon {
   color: $color-purple-600;
+  min-width: 18px;
+  min-height: 18px;
 }

@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { QuestionCard, useGetQuestionsQuery } from "@/entities/questions";
 import { Pagination } from "@/shared/ui/pagination/Pagination";
@@ -17,6 +17,7 @@ export function QuestionsList() {
     );
 
     const { data: questionsData, isFetching, isLoading, isError } = useGetQuestionsQuery(queryParams);
+    console.log('0000questionsData', questionsData);
     const prevDataRef = useRef(questionsData);
     if (questionsData) prevDataRef.current = questionsData;
     const displayData = questionsData ?? prevDataRef.current;

@@ -20,6 +20,7 @@
     cursor: pointer;
     background-color: transparent;
     border: none;
+    text-decoration: none;
 
     &:hover {
         opacity: 0.8;
@@ -32,6 +33,11 @@
     @include respond-to('tablet') {
         gap: 8px;
         padding: 12px 17.5px;
+    }
+
+    &.disabled {
+        opacity: 0.6;
+        pointer-events: none;
     }
 }
 
