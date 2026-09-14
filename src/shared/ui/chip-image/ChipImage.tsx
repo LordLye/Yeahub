@@ -11,13 +11,12 @@ interface ChipImageProps {
 export function ChipImage({ src, alt, fallback }: ChipImageProps) {
     const [errorSrc, setErrorSrc] = useState<string | null>(null);
     const [loadedSrc, setLoadedSrc] = useState<string | null>(null);
-    const hasSrc = Boolean(src && src.trim());
-    const isError = !hasSrc || errorSrc === src;
-    const isLoaded = hasSrc && loadedSrc === src;
 
-    if (isError) {
+    if (!src?.trim() || errorSrc === src) {
         return <>{fallback}</>;
     }
+
+    const isLoaded = loadedSrc === src;
 
     return (
         <>
