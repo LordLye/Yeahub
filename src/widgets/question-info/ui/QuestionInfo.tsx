@@ -3,7 +3,6 @@ import styles from './QuestionInfo.module.scss';
 import { Icon } from '@/shared/ui/icon';
 
 export function QuestionInfo({ data}: any) {
-    console.log('data', data);
     const memoizedSkills = useMemo(() => {
         return data.questionSkills
             .map((item: any) => (
