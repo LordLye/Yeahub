@@ -10,6 +10,7 @@
         background-color: $color-modal-bg;
         border-radius: 16px;
         border: 1px solid $color-purple-700;
+        flex-wrap: wrap;
         
 
         @include respond-to('desktop') {

@@ -37,7 +37,7 @@ export function QuestionAnswers({ question }: any) {
 
     return (
         <section className={styles.container}>
-            <div className={styles.answerContainer}>
+            <div className={styles.shortAnswerContainer}>
                 <h2 className={styles.title}>Краткий ответ</h2>
                 <div className={styles.shortAnswer}>
                     <MixedContentRenderer dbText={question.shortAnswer} />

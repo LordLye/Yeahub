@@ -6,9 +6,11 @@ import { QuestionAnswers, QuestionHeaderCard } from '@/entities/questions';
 import { useGetQuestionByIdQuery, useGetQuestionsQuery } from '@/entities/questions/api/questionsApi';
 import { ResponsivePortal } from '@/shared/ui/responsive-portal/ResponsivePortal';
 import { useSelector } from 'react-redux';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, Suspense } from 'react';
 import { PromoBanner } from '@/widgets/promo-banner';
 import { QuestionInfo } from '@/widgets/question-info';
+import { QuestionPageSkeleton } from './QuestionPageSkeleton';
+import { QuestionInfoSkeleton } from '@/widgets/question-info';
 
 export function QuestionPage() {
     const { id } = useParams<{ id?: string }>();
@@ -20,7 +22,8 @@ export function QuestionPage() {
     const isValidId = id && id !== 'undefined' && !isNaN(currentId);
     const page = Number(searchParams.get('page') || '1');
 
-    // Флаг, который защищает от двойных кликов в момент смены страницы пагинации
+    // Храним направление переключения страниц: 'forward' | 'backward' | null
+    const [direction, setDirection] = useState<'forward' | 'backward' | null>(null);
     const [isPageChanging, setIsPageChanging] = useState(false);
 
     // 1. Запрашиваем список вопросов текущей страницы
@@ -39,15 +42,15 @@ export function QuestionPage() {
     // Ищем индекс вопроса в текущем списке
     const currentQIndex = questions.findIndex((q: any) => q.id === currentId);
 
-    // 2. Снимаем флаг блокировки, как только данные страницы полностью загрузились, 
-    // и нужный ID появился в списке вопросов
+    // 2. Снимаем флаги блокировки, как только данные загрузились и элемент найден
     useEffect(() => {
         if (!isListFetching && currentQIndex !== -1) {
             setIsPageChanging(false);
+            setDirection(null); // Сбрасываем направление
         }
     }, [isListFetching, currentQIndex]);
 
-    // 3. Запрос за деталями конкретного вопроса (пропускаем во время смены страниц)
+    // 3. Запрос за деталями конкретного вопроса
     const shouldSkipQuestionQuery = !isValidId || isPageChanging || currentQIndex === -1;
     const { data: question, isLoading: isQuestionLoading, isError } = useGetQuestionByIdQuery(
         currentId,
@@ -58,23 +61,22 @@ export function QuestionPage() {
     const handleNext = () => {
         if (isPageChanging || isListFetching || questions.length === 0) return;
 
-        // Если это обычный элемент внутри страницы
         if (currentQIndex !== -1 && currentQIndex < questions.length - 1) {
             const nextId = questions[currentQIndex + 1].id;
             navigate(`/questions/${nextId}?${searchParams.toString()}`, {
-                state: location.state // <-- Прокидываем state дальше
+                state: location.state
             });
             return;
         }
 
-        // Если это последний элемент на странице — переключаем страницу пагинации
+        // Переключение страницы ВПЕРЕД
         setIsPageChanging(true);
+        setDirection('forward'); // Явно фиксируем направление движения
         const nextPage = page >= maxPages ? 1 : page + 1;
 
         const newParams = new URLSearchParams(searchParams);
         newParams.set('page', String(nextPage));
 
-        // Заменяем setSearchParams(newParams) на navigate:
         navigate(`/questions/${currentId}?${newParams.toString()}`, {
             state: location.state
         });
@@ -84,38 +86,34 @@ export function QuestionPage() {
     const handlePrev = () => {
         if (isPageChanging || isListFetching || questions.length === 0) return;
 
-        // Если это обычный элемент внутри страницы
         if (currentQIndex > 0) {
             const prevId = questions[currentQIndex - 1].id;
             navigate(`/questions/${prevId}?${searchParams.toString()}`, {
-                state: location.state // <-- Прокидываем state дальше
+                state: location.state
             });
             return;
         }
 
-        // Если это первый элемент на странице — переключаем страницу пагинации назад
+        // Переключение страницы НАЗАД
         setIsPageChanging(true);
+        setDirection('backward'); // Явно фиксируем направление движения
         const prevPage = page <= 1 ? maxPages : page - 1;
 
         const newParams = new URLSearchParams(searchParams);
         newParams.set('page', String(prevPage));
 
-        // Заменяем setSearchParams(newParams) на navigate:
         navigate(`/questions/${currentId}?${newParams.toString()}`, {
             state: location.state
         });
     };
 
-    // 6. Отдельный эффект, который срабатывает только когда страница в URL УЖЕ изменилась,
-    // новые данные прилетели, и нам нужно выбрать крайний элемент (первый или последний)
-    // Внутри useEffect, который обрабатывает стык страниц и target в QuestionPage:
+    // 6. Эффект для подмены ID на стыке страниц на основе направления direction
     useEffect(() => {
-        if (!isPageChanging || isListFetching || questions.length === 0) return;
+        if (!isPageChanging || isListFetching || questions.length === 0 || !direction) return;
 
         if (currentQIndex === -1) {
-            const isMovingForward = currentId < questions[0]?.id;
-
-            const targetQuestion = isMovingForward
+            // Если шли вперед — берем первый элемент новой страницы, если назад — самый последний
+            const targetQuestion = direction === 'forward'
                 ? questions[0]
                 : questions[questions.length - 1];
 
@@ -124,15 +122,12 @@ export function QuestionPage() {
                     `/questions/${targetQuestion.id}?${searchParams.toString()}`,
                     {
                         replace: true,
-                        state: location.state // <-- КРИТИЧЕСКИ ВАЖНО: сохраняем старый state (from)!
+                        state: location.state
                     }
                 );
             }
         }
-    }, [isPageChanging, isListFetching, questions, currentQIndex, currentId, searchParams, navigate, location.state]);
-    // Не забудьте добавить location.state в массив зависимостей эффекта!
-
-
+    }, [isPageChanging, isListFetching, questions, currentQIndex, direction, searchParams, navigate, location.state]);
 
     const headerHeight = useSelector((state: any) => state.header?.headerHeight ?? 0);
     const [isInfoOpen, setIsInfoOpen] = useState(false);
@@ -162,12 +157,11 @@ export function QuestionPage() {
         return <div className={styles.centerMessage}>Ошибка: Указан некорректный ID</div>;
     }
 
-    // Во время жесткой смены страниц или загрузки вопроса показываем лоадер
-    if (isQuestionLoading || isPageChanging || currentQIndex === -1) {
-        return <div className={styles.centerMessage}>Загрузка вопроса...</div>;
+    if (isPageChanging || currentQIndex === -1 || isQuestionLoading) {
+        return <QuestionPageSkeleton />;
     }
 
-    if (isError || !question) {
+    if (isQuestionLoading || isError || !question) {
         return <div className={styles.centerMessage}>Произошла ошибка при загрузке вопроса</div>;
     }
 
@@ -206,8 +200,10 @@ export function QuestionPage() {
                         height: 'auto',
                     }}
                     className={styles.infoModal}
-                >
-                    <QuestionInfo data={question} isLoading={isQuestionLoading} />
+                >   
+                    <Suspense fallback={<QuestionInfoSkeleton />}>
+                        <QuestionInfo data={question} isLoading={isQuestionLoading} />
+                    </Suspense>
                 </ResponsivePortal>
             </div>
         </section>

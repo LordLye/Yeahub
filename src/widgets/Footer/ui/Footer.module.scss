@@ -11,7 +11,7 @@
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
-  
+  flex-wrap: wrap;
 }
 
 .card {
@@ -79,6 +79,7 @@
 .icons {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   margin-left: auto;
   justify-content: flex-start;

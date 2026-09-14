@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
   padding: 10px;
 
@@ -22,6 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   border-radius: 50%;
   border: 1px solid $color-purple-600;
   color: $color-purple-600;
@@ -45,6 +47,7 @@
 .pages {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1px;
   font-size: 14px;
 }
@@ -58,7 +61,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
-  padding: 2px 6px;
+  padding: 2px 5.5px;
   border-radius: $radius-sm;
   border: none;
   background: transparent;
@@ -76,5 +79,9 @@
     &:hover {
       background-color: $color-purple-600;
     }
+  }
+
+  @include respond-to('tablet') {
+    padding: 2px 6px;
   }
 }

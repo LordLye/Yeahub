@@ -3,8 +3,8 @@ import styles from './QuestionNavigation.module.scss';
 import clsx from 'clsx';
 
 interface QuestionNavigationProps {
-    onPrev: () => void;
-    onNext: () => void;
+    onPrev?: () => void;
+    onNext?: () => void;
     isDisabled: boolean;
 }
 

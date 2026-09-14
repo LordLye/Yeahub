@@ -110,7 +110,7 @@ export function FiltersModal() {
 
 	// 1. Отслеживаем брейкпоинт экрана
 	useEffect(() => {
-		const mediaQuery = window.matchMedia('(min-width: 1024px)');
+		const mediaQuery = window.matchMedia('(min-width: 768px)');
 		setIsDesktop(mediaQuery.matches);
 		const handleScreenChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
 		mediaQuery.addEventListener('change', handleScreenChange);
@@ -140,7 +140,7 @@ export function FiltersModal() {
 	// 3. МОБИЛКА: Применяем все накопленные фильтры за один раз при закрытии шторки
 	useEffect(() => {
 		return () => {
-			const isCurrentlyMobile = !window.matchMedia("(min-width: 1024px)").matches;
+			const isCurrentlyMobile = !window.matchMedia("(min-width: 768px)").matches;
 			if (isCurrentlyMobile) {
 				applyFiltersToUrl(searchParams, activeRef.current, setSearchParams);
 			}
