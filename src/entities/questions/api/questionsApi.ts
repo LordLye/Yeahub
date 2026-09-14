@@ -2,7 +2,7 @@ import { baseApi } from "@/shared/api";
 
 export const questionApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getQuestions: builder.query<any, Record<string, string>>({
+        getQuestions: builder.query({
             query: (params) => ({
                 url: "/questions/public-questions",
                 method: "GET",

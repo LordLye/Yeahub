@@ -2,7 +2,7 @@ import { Icon } from '@/shared/ui/icon';
 import styled from './QuestionHeaderCard.module.scss'
 import questionImage from "@/shared/assets/images/questionImage.png";
 
-export function QuestionHeaderCard({ question, isOpenInfo }: any) {
+export function QuestionHeaderCard({ question, isOpenInfo }: { question: any; isOpenInfo: any; }) {
     if (!question) return null;
 
     const handleInfoButtonClick = () => {

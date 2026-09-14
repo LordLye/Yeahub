@@ -4,7 +4,7 @@ import { MixedContentRenderer } from '@/shared/lib/utils';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 
-export function QuestionAnswers({ question }: any) {
+export function QuestionAnswers({ question }: { question: any}) {
     const [isAnswerOpen, setIsAnswerOpen] = useState(false);
     const [isButtonCreated, setIsButtonCreated] = useState(false);
     const MAX_HEIGHT = parseInt(styles.maxHeightAnswerBlock, 10) || 300;
@@ -15,9 +15,9 @@ export function QuestionAnswers({ question }: any) {
         const element = longAnswerRef.current;
         if (!element) return;
 
-        const resizeObserver = new ResizeObserver((entries) => {
-            for (let entry of entries) {
-                const currentScrollHeight = entry.target.scrollHeight;
+        const resizeObserver = new ResizeObserver((el) => {
+            for (let target of el) {
+                const currentScrollHeight = target.target.scrollHeight;
 
                 if (currentScrollHeight > MAX_HEIGHT) {
                     setIsButtonCreated(true);

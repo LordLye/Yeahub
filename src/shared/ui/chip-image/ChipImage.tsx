@@ -13,15 +13,25 @@ export function ChipImage({ src, alt, fallback }: ChipImageProps) {
         setIsError(false);
     }, [src]);
 
-    if (!src || isError) {
+    if (!src || src.trim() === '') {
+        return <>{fallback}</>;
+    }
+
+    if (isError) {
         return <>{fallback}</>;
     }
 
     return (
-        <img
-            src={src}
-            alt={alt}
-            onError={() => setIsError(true)}
-        />
+        <>
+            <img
+                src={src}
+                alt={alt}
+                width={28}
+                height={28}
+                style={{ display: 'none' }}
+                onError={() => setIsError(true)}
+            />
+            {fallback}
+        </>
     );
 }

@@ -1,73 +1,82 @@
-# React + TypeScript + Vite
+# YeaHub Frontend 🌊
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Фронтенд-приложение для платформы **YeaHub**, разработанное на стекe React, Vite и TypeScript с использованием Redux Toolkit (RTK Query) для эффективного управления состоянием и запросами.
 
-Currently, two official plugins are available:
+## 🚀 Стек технологий
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Фреймворк:** React 18 + TypeScript
+- **Сборщик:** Vite (с поддержкой путей-алиасов `@/*`)
+- **Стилизация:** SCSS (Sass) + CSS Modules
+- **Управление состоянием & API:** Redux Toolkit & RTK Query
+- **Иконки/Графика:** SVGR (`vite-plugin-svgr`)
+- **Хостинг / Деплой:** Vercel
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Локальное развертывание
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Клонирование репозитория
+```bash
+git clone https://github.com
+cd yeahub-lake
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Установка зависимостей
+```bash
+npm install
 ```
+
+### 3. Запуск в режиме разработки
+> **⚠️ Важно:** Бэкенд-сервер принимает запросы строго с `http://localhost:3000`. Приложение настроено на автоматический запуск именно на этом порту во избежание CORS-ошибок при локальной разработке.
+
+```bash
+npm run dev
+```
+После запуска проект будет доступен по адресу: [http://localhost:3000](http://localhost:3000).
+
+---
+
+## 🏗️ Сборка и Линтинг
+
+Скомпилировать проект в оптимизированный Production-билд:
+```bash
+npm run build
+```
+
+Проверить код на наличие ошибок TypeScript и линтера:
+```bash
+npm run lint
+```
+
+---
+
+## 🌐 Особенности деплоя (Vercel & CORS)
+
+### Чувствительность к регистру файлов (Case Sensitivity)
+Проект настроен на деплой в Linux-среду Vercel. Все названия папок внутри `src/` (например, `src/widgets/header`) должны строго использовать **нижний регистр** как в коде импортов, так и в Git-индексе. 
+
+При возникновении ошибок `TS2307: Cannot find module` на Vercel, сбросьте кэш путей Git:
+```bash
+git rm -r --cached .
+git add .
+git commit -m "fix: force git case update"
+```
+
+### Взаимодействие с API (`api.yeatwork.ru`)
+Запросы к бэкенду управляются через RTK Query в `src/shared/api/baseApi.ts` (или вашем пути к файлу). 
+
+- **В локальном режиме** запросы идут напрямую на `https://yeatwork.ru`.
+- **В Production-режиме (на Vercel)** настроено проксирование через относительный путь `/api` с помощью конфигурации в `vercel.json` для обхода ограничений браузера:
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://yeatwork.ru/:path*"
+    }
+  ]
+}
+```
+
+> **Примечание:** Для корректной работы деплоя домен фронтенда должен быть внесен администратором бэкенда в список разрешенных адресов (CORS Allowed Origins).

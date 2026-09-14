@@ -170,8 +170,8 @@ export function FiltersModal() {
 	const { data: skillsData, isFetching: isSkillsLoading } = useGetSkillsQuery();
 	const { data: specializationsData, isFetching: isSpecializationsLoading } = useGetSpecializationsQuery();
 
-	const skills = skillsData?.data ?? [];
-	const specializations = specializationsData?.data ?? [];
+	const skillsDataResponse = skillsData?.data;
+	const specializationsDataResponse = specializationsData?.data;
 	const isLoading = isSkillsLoading || isSpecializationsLoading;
 
 	const memoizedStatus = useMemo(() => {
@@ -187,7 +187,9 @@ export function FiltersModal() {
 	}, [statuses, active.status, toggle]);
 
 	const memoizedSpecializations = useMemo(() => {
-		return specializations.map((item: SpecializationItem) => (
+		// Перенесли дефолтное значение вовнутрь
+		const list = specializationsDataResponse ?? [];
+		return list.map((item: SpecializationItem) => (
 			<Chip
 				key={item.id}
 				active={active.specializationId.includes(item.id.toString())}
@@ -196,10 +198,16 @@ export function FiltersModal() {
 				{item.title}
 			</Chip>
 		));
-	}, [specializations, active.specializationId, toggle]);
+	}, [specializationsDataResponse, active.specializationId, toggle]);
+
+	const defaultIconFallback = useMemo(() => (
+		<Icon name="defaultSkillIcon" w={28} h={28} />
+	), []);
 
 	const memoizedSkills = useMemo(() => {
-		return skills.map((item: SkillsItem) => (
+		// Перенесли дефолтное значение вовнутрь
+		const list = skillsDataResponse ?? [];
+		return list.map((item: SkillsItem) => (
 			<Chip
 				key={item.id}
 				active={active.skills.includes(String(item.id))}
@@ -209,13 +217,13 @@ export function FiltersModal() {
 					<ChipImage
 						src={item.imageSrc}
 						alt={item.title}
-						fallback={<Icon name="defaultSkillIcon" w={28} h={28} />}
+						fallback={defaultIconFallback}
 					/>
 					{item.title}
 				</div>
 			</Chip>
 		));
-	}, [skills, active.skills, toggle]);
+	}, [skillsDataResponse, active.skills, toggle, defaultIconFallback]);
 
 	const memoizedLevels = useMemo(() => {
 		return LEVELS.map((item) => (
