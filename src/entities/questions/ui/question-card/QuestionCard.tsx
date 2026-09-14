@@ -5,7 +5,7 @@ import { MixedContentRenderer } from "@/shared/lib/utils/MixedContentRenderer";
 import styles from './QuestionCard.module.scss';
 import { Link, useLocation } from "react-router-dom";
 
-export function QuestionCard({text, content, rate, complexity, id}: {text: string; content: string; rate: number; complexity: string; id: number}) {
+export function QuestionCard({ text, content, rate, complexity, id }: { text: string; content: string; rate: number; complexity: string; id: number }) {
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
 

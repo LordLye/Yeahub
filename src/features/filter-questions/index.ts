@@ -1,7 +1,5 @@
-import { FiltersModal } from './ui/FiltersModal/FiltersModal';
-import { SearchInput } from './ui/SearchInput';
-
-export { FiltersModal, SearchInput }
+export { FiltersModal } from './ui/FiltersModal/FiltersModal';
+export { SearchInput } from './ui/SearchInput';
 
 export { default as productFilterReducer } from './model/slice';
 

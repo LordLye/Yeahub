@@ -21,13 +21,15 @@
 }
 
 .asideSlot {
-  display: none; /* На мобильных сайдбар полностью скрыт и не занимает место */
+  display: none;
+  /* На мобильных сайдбар полностью скрыт и не занимает место */
 
   @include respond-to('desktop') {
     display: block;
     width: 392px;
     flex-shrink: 0;
-    background-color: #f9f9f9; /* Ваши стили для сайдбара */
+    background-color: #f9f9f9;
+    /* Ваши стили для сайдбара */
     border-right: 1px solid #eaeaea;
   }
 }

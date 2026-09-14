@@ -90,7 +90,7 @@ export function FiltersModal() {
 			isChanged = true;
 		}
 
-		// Страницу сбрасываем ОДИН РАЗ в самом конце, если хоть один параметр поменялся
+		// Страницу сбрасываем один раз в самом конце, если хоть один параметр поменялся
 		if (isChanged) {
 			newParams.set("page", "1");
 			setSearchParams(newParams, { replace: true });
@@ -108,16 +108,16 @@ export function FiltersModal() {
 		activeRef.current = active;
 	}, [active]);
 
-	// 1. Отслеживаем брейкпоинт экрана
+	// Отслеживаем брейкпоинт экрана
 	useEffect(() => {
-		const mediaQuery = window.matchMedia('(min-width: 1024px)');
+		const mediaQuery = window.matchMedia('(min-width: 768px)');
 		setIsDesktop(mediaQuery.matches);
 		const handleScreenChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
 		mediaQuery.addEventListener('change', handleScreenChange);
 		return () => mediaQuery.removeEventListener('change', handleScreenChange);
 	}, []);
 
-	// 2. ДЕСКТОП: Умная синхронизация чипсов (мгновенно) и инпута (дебаунс 400мс)
+	// ДЕСКТОП: Умная синхронизация списков и инпута (дебаунс 400мс)
 	useEffect(() => {
 		if (!isDesktop) return;
 
@@ -132,7 +132,6 @@ export function FiltersModal() {
 			return () => clearTimeout(delayDebounceFn);
 		}
 
-		// Если изменились чипсы — применяем их мгновенно
 		applyFiltersToUrl(searchParams, active, setSearchParams);
 
 	}, [active, isDesktop, searchParams, setSearchParams]);
@@ -140,7 +139,7 @@ export function FiltersModal() {
 	// 3. МОБИЛКА: Применяем все накопленные фильтры за один раз при закрытии шторки
 	useEffect(() => {
 		return () => {
-			const isCurrentlyMobile = !window.matchMedia("(min-width: 1024px)").matches;
+			const isCurrentlyMobile = !window.matchMedia("(min-width: 768px)").matches;
 			if (isCurrentlyMobile) {
 				applyFiltersToUrl(searchParams, activeRef.current, setSearchParams);
 			}
@@ -160,7 +159,6 @@ export function FiltersModal() {
 					? [prev[filterType] as string]
 					: [];
 
-			// Теперь TypeScript уверен, что currentValues — это массив, и .filter() сработает без ошибок
 			const nextValues = currentValues.includes(value)
 				? currentValues.filter((v) => v !== value)
 				: [...currentValues, value];
@@ -169,8 +167,6 @@ export function FiltersModal() {
 		});
 	}, []);
 
-
-	// --- ЗАПРОСЫ ДАННЫХ С СЕРВЕРА ---
 	const { data: skillsData, isFetching: isSkillsLoading } = useGetSkillsQuery();
 	const { data: specializationsData, isFetching: isSpecializationsLoading } = useGetSpecializationsQuery();
 
@@ -178,7 +174,6 @@ export function FiltersModal() {
 	const specializations = specializationsData?.data ?? [];
 	const isLoading = isSkillsLoading || isSpecializationsLoading;
 
-	// --- МЕМОИЗИРОВАННЫЕ ЧИПСЫ ---
 	const memoizedStatus = useMemo(() => {
 		return statuses.map((item) => (
 			<Chip

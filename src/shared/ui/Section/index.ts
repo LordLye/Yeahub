@@ -1,3 +1,1 @@
-import { Section } from "./Section";
-
-export { Section }
+export { Section } from "./Section";

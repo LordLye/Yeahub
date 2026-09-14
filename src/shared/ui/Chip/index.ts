@@ -1,2 +1,1 @@
-import { Chip } from './Chip';
-export { Chip }
+export { Chip } from './Chip';

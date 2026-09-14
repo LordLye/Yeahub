@@ -1,4 +1,2 @@
-import { QuestionsList } from './ui/QuestionsList';
-import { QuestionListSkeleton } from './ui/QuestionListSkeleton';
-
-export { QuestionsList, QuestionListSkeleton };
+export { QuestionsList } from './ui/QuestionsList';
+export { QuestionListSkeleton } from './ui/QuestionListSkeleton';

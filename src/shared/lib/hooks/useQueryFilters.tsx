@@ -11,11 +11,7 @@ export default function useQueryFilters() {
         if (value) p.set(key, value);
         else p.delete(key);
 
-        // Временный дебаг-лог
-        console.log(`[useQueryFilters] Вызов для ключа: "${key}". Передано значение: "${value}". Флаг resetPage: ${resetPage}`);
-
         if (resetPage && key !== "page") {
-            console.log(`🔥 СБРОС СТРАНИЦЫ НА "1" из-за изменения ключа "${key}"!`);
             p.set("page", "1");
         }
 

@@ -2,7 +2,7 @@ import styles from './SelectTitles.module.scss';
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 
-function SelectTitles() {
+export default function SelectTitles() {
     return (
         <ul className={styles.navList}>
             <li className={styles.navItem}>
@@ -20,5 +20,3 @@ function SelectTitles() {
         </ul>
     );
 }
-
-export default SelectTitles;

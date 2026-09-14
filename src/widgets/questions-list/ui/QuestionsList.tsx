@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { QuestionCard, useGetQuestionsQuery } from "@/entities/questions";
 import { Pagination } from "@/shared/ui/pagination/Pagination";
@@ -44,7 +44,7 @@ export function QuestionsList() {
                             content={item.shortAnswer}
                             rate={item.rate}
                             complexity={item.complexity}
-                            id = {item.id}
+                            id={item.id}
                         />
                     </li>
                 ))}

@@ -16,7 +16,7 @@
     @include respond-to('desktop') {
         grid-template-columns: 1fr 392px;
         gap: 20px;
-        grid-template-areas: 
+        grid-template-areas:
             "content meta"
             "content banner";
         margin-bottom: 105px;
@@ -66,6 +66,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    flex-wrap: wrap;
 
     @include respond-to('tablet') {
         gap: 20px;
@@ -87,19 +88,19 @@
 }
 
 .sidebar {
-    display : none; /* На мобильных сайдбар полностью скрыт и не занимает место */
+    display: none;
 
     @include respond-to('desktop') {
         background-color: $color-white;
         border-radius: $radius-2xl;
         display: block;
-        grid-area: meta; /* Правый верхний угол */
+        grid-area: meta;
     }
 }
 
 .promoBanner {
     @include respond-to('desktop') {
-        grid-area: banner; /* Правый нижний угол */
+        grid-area: banner;
     }
 }
 
@@ -108,4 +109,3 @@
         padding: 24px;
     }
 }
-

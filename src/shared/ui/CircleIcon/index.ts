@@ -1,2 +1,1 @@
-import { CircleIcon } from './CircleIcon';
-export { CircleIcon }
+export { CircleIcon } from './CircleIcon';

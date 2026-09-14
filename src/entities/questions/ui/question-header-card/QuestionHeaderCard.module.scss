@@ -49,6 +49,7 @@
 .content {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     gap: 4px;
 
     @include respond-to('tablet') {

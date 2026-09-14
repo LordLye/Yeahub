@@ -13,7 +13,6 @@ interface ResponsivePortalProps {
 
 export function ResponsivePortal({ isOpen, onClose, children, style, ...rest }: ResponsivePortalProps) {
     const [isDesktop, setIsDesktop] = useState(false);
-    // Новое состояние: определяем, является ли устройство мобильным (экран < 768px)
     const [isMobile, setIsMobile] = useState(false);
     const headerHeight = useSelector((state: any) => state.header?.headerHeight ?? 0);
 
@@ -31,7 +30,6 @@ export function ResponsivePortal({ isOpen, onClose, children, style, ...rest }: 
 
         const handleMobileChange = (e: MediaQueryListEvent) => {
             setIsMobile(e.matches);
-            // Если ушли с мобильного разрешения, возвращаем скролл
             if (!e.matches) document.body.style.overflow = "";
         };
 
@@ -45,32 +43,30 @@ export function ResponsivePortal({ isOpen, onClose, children, style, ...rest }: 
         };
     }, []);
 
-    // 1. ДЕСКТОП: вставляем контент напрямую в aside страницы
+    // ДЕСКТОП
     if (isDesktop) {
         const desktopSlot = document.getElementById('desktop-aside-slot');
         if (!desktopSlot) return null;
         return createPortal(children, desktopSlot);
     }
 
-    // 2. МОБИЛКИ / ПЛАНШЕТЫ: оборачиваем в нативный Modal
-    // Если это НЕ мобилка (то есть планшет), принудительно прокидываем data-no-scroll-lock
+    // МОБ / ПЛАНШ
     const shouldDisableScrollLock = !isMobile;
 
     const portalStyle: React.CSSProperties = {
-    ...style, // Берем базовые стили из HomePage (position, top, right, height)
-    
-    // Если это мобилка — жестко ограничиваем высоту экраном и включаем флекс
-    ...(isMobile && {
-        maxHeight: `calc(calc(100dvh - ${headerHeight}px))`, 
-    }),
-};
+        ...style,
+
+        ...(isMobile && {
+            maxHeight: `calc(calc(100dvh - ${headerHeight}px))`,
+        }),
+    };
 
     return (
-        <Modal 
+        <Modal
             isOpen={isOpen}
             onClose={onClose}
             style={portalStyle}
-            data-no-scroll-lock={shouldDisableScrollLock} 
+            data-no-scroll-lock={shouldDisableScrollLock}
             {...rest}
         >
             {children}

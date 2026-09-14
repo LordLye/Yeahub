@@ -40,17 +40,17 @@ export function Pagination({ totalPages }: PaginationProps) {
 
             <div className={styles.pages} onClick={handlerAddParams}>
                 {items.map((item: number | string, i: number) =>
-                item === "..." ? (
-                    <span key={i} className={styles.ellipsis}>...</span>
-                ) : (
-                    <button
-                        key={i}
-                        className={clsx(styles.pageButton, item === currentPage && styles.active)}
-                    >
-                        {item}
-                    </button>
-                )
-            )}
+                    item === "..." ? (
+                        <span key={i} className={styles.ellipsis}>...</span>
+                    ) : (
+                        <button
+                            key={i}
+                            className={clsx(styles.pageButton, item === currentPage && styles.active)}
+                        >
+                            {item}
+                        </button>
+                    )
+                )}
             </div>
 
             <button

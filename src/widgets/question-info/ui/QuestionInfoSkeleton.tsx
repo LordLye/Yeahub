@@ -1,26 +1,7 @@
-import { useMemo } from 'react';
 import styles from './QuestionInfo.module.scss';
-import { Icon } from '@/shared/ui/icon';
+import Skeleton from '@/shared/ui/skeleton';
 
-export function QuestionInfo({ data}: any) {
-    console.log('data', data);
-    const memoizedSkills = useMemo(() => {
-        return data.questionSkills
-            .map((item: any) => (
-                <div key={item.id} className={styles.skillWrapper}>
-                    <Icon name="figma" className={styles.icon} />
-                    <p className={styles.skill}>{item.title}</p>
-                </div>
-            ));
-    }, [data]);
-
-    const memoizedKeyWords = useMemo(() => {
-        return data.keywords
-            .map((item: any) => (
-                <p key={`${item}+${Math.random()}`} className={styles.keyword}>#{item}</p>
-            ));
-    }, [data]);
-
+export function QuestionInfoSkeleton() {
     return (
         <section className={styles.questionInfo}>
             <div className={styles.wrapper}>
@@ -28,11 +9,15 @@ export function QuestionInfo({ data}: any) {
                 <div className={styles.infoWrapper}>
                     <div className={styles.info}>
                         <p className={styles.text}>Сложность:</p>
-                        <p className={styles.value}>{data.complexity}</p>
+                        <p className={styles.value}>
+                            <Skeleton width="40px" height="24px" />
+                        </p>
                     </div>
                     <div className={styles.info}>
                         <p className={styles.text}>Рейтинг:</p>
-                        <p className={styles.value}>{data.rate}</p>
+                        <p className={styles.value}>
+                            <Skeleton width="40px" height="24px" />
+                        </p>
                     </div>
                 </div>
             </div>
@@ -40,14 +25,14 @@ export function QuestionInfo({ data}: any) {
             <div className={styles.wrapper}>
                 <h3 className={styles.title}>Навыки:</h3>
                 <div className={styles.infoWrapper}>
-                    {memoizedSkills}
+                    <Skeleton width="100%" height="24px" />
                 </div>
             </div>
 
             <div className={styles.wrapper}>
                 <h3 className={styles.title}>Ключевые слова:</h3>
                 <div className={styles.infoWrapper}>
-                    {memoizedKeyWords}
+                    <Skeleton width="100%" height="24px" />
                 </div>
             </div>
 

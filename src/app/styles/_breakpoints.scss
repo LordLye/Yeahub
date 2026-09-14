@@ -1,4 +1,3 @@
-// 1. ОБЯЗАТЕЛЬНО: подключаем встроенный модуль Sass для работы с картами
 @use "sass:map";
 
 $breakpoints: (
@@ -8,10 +7,7 @@ $breakpoints: (
 );
 
 @mixin respond-to($breakpoint) {
-
-    // 2. Используем современный синтаксис map.has-key вместо map-has-key
     @if map.has-key($breakpoints, $breakpoint) {
-        // 3. Используем современный синтаксис map.get вместо map-get
         $value: map.get($breakpoints, $breakpoint);
 
         @if $breakpoint =='mobile-only' {

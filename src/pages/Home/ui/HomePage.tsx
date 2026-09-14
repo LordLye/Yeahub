@@ -1,12 +1,12 @@
 import { QuestionsList } from "@/widgets/questions-list/ui/QuestionsList";
 import styles from './HomePage.module.scss';
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import { QuestionListSkeleton } from "@/widgets/questions-list";
 import { Icon } from "@/shared/ui/icon";
 import { useDispatch, useSelector } from "react-redux";
 import { closeMobileFilters, openMobileFilters, selectIsFilterOpen } from "@/features/filter-questions/model/slice";
-import { FiltersModal } from "@/features/filter-questions/ui/FiltersModal/FiltersModal";
 import { ResponsivePortal } from "@/shared/ui/responsive-portal/ResponsivePortal";
+const FiltersModal = React.lazy(() => import('@/features/filter-questions/ui/FiltersModal/FiltersModal').then(module => ({ default: module.FiltersModal })));
 
 export function HomePage() {
   const isFiltersOpen = useSelector(selectIsFilterOpen);

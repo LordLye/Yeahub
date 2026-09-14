@@ -6,7 +6,7 @@
     z-index: 100;
     height: auto;
     max-height: fit-content;
-    max-height: 100%; 
+    max-height: 100%;
 
     @include respond-to('tablet') {
         height: auto;

@@ -3,17 +3,17 @@ import styles from './QuestionNavigation.module.scss';
 import clsx from 'clsx';
 
 interface QuestionNavigationProps {
-    onPrev: () => void;
-    onNext: () => void;
+    onPrev?: () => void;
+    onNext?: () => void;
     isDisabled: boolean;
 }
 
 export function QuestionNavigation({ onPrev, onNext, isDisabled }: QuestionNavigationProps) {
     return (
         <section className={styles.container}>
-            <button 
+            <button
                 type="button"
-                className={clsx(styles.button, isDisabled && styles.disabled)} 
+                className={clsx(styles.button, isDisabled && styles.disabled)}
                 onClick={onPrev}
                 disabled={isDisabled}
             >
@@ -21,9 +21,9 @@ export function QuestionNavigation({ onPrev, onNext, isDisabled }: QuestionNavig
                 <span className={styles.text}>Предыдущий</span>
             </button>
 
-            <button 
+            <button
                 type="button"
-                className={clsx(styles.button, isDisabled && styles.disabled)} 
+                className={clsx(styles.button, isDisabled && styles.disabled)}
                 onClick={onNext}
                 disabled={isDisabled}
             >

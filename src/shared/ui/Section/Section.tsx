@@ -16,7 +16,6 @@ export function Section({
     children: React.ReactNode[];
 }) {
     const [isExpanded, setIsExpanded] = useState(false);
-
     const toggleExpand = () => {
         setIsExpanded((prev) => !prev);
     };
