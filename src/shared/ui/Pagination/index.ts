@@ -1,4 +1,2 @@
-import { Pagination } from './Pagination';
-import { PaginationSkeleton } from './PaginationSkeleton';
-
-export { Pagination, PaginationSkeleton };
+export { Pagination } from './Pagination';
+export { PaginationSkeleton } from './PaginationSkeleton';

@@ -14,13 +14,11 @@ export function getPagination(current: number, total: number, delta = 1): Pagina
     let start = Math.max(2, current - sideCount);
     let end = Math.min(total - 1, current + sideCount);
 
-    // Keep the same right-side window for pages 1..4.
     if (current <= stableEdgeUntil) {
         start = 2;
         end = Math.min(total - 1, 1 + edgeWindow);
     }
 
-    // Symmetric behavior on the last pages.
     if (current >= total - (stableEdgeUntil - 1)) {
         start = Math.max(2, total - edgeWindow);
         end = total - 1;

@@ -13,14 +13,12 @@ import { Link } from "react-router-dom";
 export function Header() {
     const dispatch = useDispatch();
 
-    // ИСПРАВЛЕНИЕ: Добавили защиту от undefined, если в store редюсер еще не инициализировался
     const headerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const header = headerRef.current;
         if (!header) return;
 
-        // ResizeObserver сам отлично реагирует на изменение размеров окна браузера
         const resizeObserver = new ResizeObserver((entries) => {
             for (let entry of entries) {
                 const height = entry.target.getBoundingClientRect().height;
@@ -60,7 +58,6 @@ export function Header() {
             const rect = headerRef.current.getBoundingClientRect();
 
             setAuthModalCoords({
-                // ИСПРАВЛЕНИЕ: прибавляем scrollY, чтобы зафиксировать на странице
                 top: rect.bottom + window.scrollY + 8,
                 right: window.innerWidth - rect.right,
             });
@@ -103,7 +100,7 @@ export function Header() {
                             noCloseButton
                             data-no-scroll-lock
                             style={{
-                                position: 'absolute', // ИСПРАВЛЕНО с 'fixed'
+                                position: 'absolute',
                                 top: `${selectModalCoords.top}px`,
                                 left: `${selectModalCoords.left}px`,
                                 width: 'fit-content',
@@ -132,7 +129,7 @@ export function Header() {
                     data-no-scroll-lock
                     triggerRef={authButtonRef}
                     style={{
-                        position: 'absolute', // ИСПРАВЛЕНО с 'fixed'
+                        position: 'absolute',
                         top: `${authModalCoords.top}px`,
                         right: `${authModalCoords.right}px`,
                     }}

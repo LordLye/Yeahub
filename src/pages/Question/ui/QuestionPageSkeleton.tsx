@@ -1,13 +1,9 @@
-import Skeleton from '@/shared/ui/skeleton';
 import styles from './QuestionPage.module.scss';
 import { ChevronLeft } from 'lucide-react';
 import { QuestionNavigation } from '@/features/navigate-questions';
-import { ResponsivePortal } from '@/shared/ui/responsive-portal/ResponsivePortal';
-
 import { QuestionAnswersSkeleton } from '@/entities/questions/ui/question-answers/QuestionAnswersSkeleton';
 import { PromoBanner } from '@/widgets/promo-banner';
 import { QuestionHeaderCardSkeleton } from '@/entities/questions/ui/question-header-card/QuestionHeaderCardSkeleton';
-
 
 export function QuestionPageSkeleton() {
     return (

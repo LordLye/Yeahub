@@ -14,7 +14,7 @@ import { QuestionInfoSkeleton } from '@/widgets/question-info';
 
 export function QuestionPage() {
     const { id } = useParams<{ id?: string }>();
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -200,7 +200,7 @@ export function QuestionPage() {
                         height: 'auto',
                     }}
                     className={styles.infoModal}
-                >   
+                >
                     <Suspense fallback={<QuestionInfoSkeleton />}>
                         <QuestionInfo data={question} isLoading={isQuestionLoading} />
                     </Suspense>

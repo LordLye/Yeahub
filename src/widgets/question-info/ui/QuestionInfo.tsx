@@ -2,24 +2,24 @@ import { useMemo } from 'react';
 import styles from './QuestionInfo.module.scss';
 import { Icon } from '@/shared/ui/icon';
 
-export function QuestionInfo({data, isLoading} : any) {
+export function QuestionInfo({ data}: any) {
     console.log('data', data);
     const memoizedSkills = useMemo(() => {
-            return data.questionSkills
+        return data.questionSkills
             .map((item: any) => (
                 <div key={item.id} className={styles.skillWrapper}>
-                    <Icon name="figma" className={styles.icon}/>
+                    <Icon name="figma" className={styles.icon} />
                     <p className={styles.skill}>{item.title}</p>
                 </div>
             ));
-        }, [data]);
+    }, [data]);
 
-        const memoizedKeyWords = useMemo(() => {
-            return data.keywords
+    const memoizedKeyWords = useMemo(() => {
+        return data.keywords
             .map((item: any) => (
                 <p key={`${item}+${Math.random()}`} className={styles.keyword}>#{item}</p>
             ));
-        }, [data]);
+    }, [data]);
 
     return (
         <section className={styles.questionInfo}>

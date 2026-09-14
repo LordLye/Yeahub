@@ -12,7 +12,7 @@ export function PromoBanner({ className }: { className?: string }) {
         <div className={clsx(styles.promoBanner, className)}>
             <div className={styles.nameContent}>
                 <div className={styles.avatarContent}>
-                    <img className={styles.avatar} src={promoAvatar} alt="парень в белой футболке" /> 
+                    <img className={styles.avatar} src={promoAvatar} alt="парень в белой футболке" />
                 </div>
                 <div className={styles.nameTextWrapper}>
                     <p className={styles.name}>Руслан Куянец</p>

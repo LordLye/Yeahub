@@ -1,6 +1,5 @@
 import { Icon } from '@/shared/ui/icon';
 import styled from './QuestionHeaderCard.module.scss'
-import questionImage from "@/shared/assets/images/questionImage.png";
 import Skeleton from '@/shared/ui/skeleton';
 
 export function QuestionHeaderCardSkeleton() {

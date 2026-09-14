@@ -1,6 +1,7 @@
 import { Icon } from '@/shared/ui/icon';
 import styles from './HomePage.module.scss';
 import { QuestionListSkeleton } from '@/widgets/questions-list';
+import { FiltersModal } from '@/features/filter-questions';
 
 export const HomePageSkeleton = () => {
     return (
@@ -14,7 +15,9 @@ export const HomePageSkeleton = () => {
                     <QuestionListSkeleton />
                 </div>
             </div>
-            <aside id="desktop-aside-slot" className={styles.asideSlot}></aside>
+            <aside id="desktop-aside-slot" className={styles.asideSlot}>
+                <FiltersModal />
+            </aside>
         </div>
     );
 };

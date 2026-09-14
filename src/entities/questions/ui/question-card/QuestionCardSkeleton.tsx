@@ -1,7 +1,6 @@
 import Skeleton from '@/shared/ui/skeleton';
 import styles from './QuestionCard.module.scss';
 
-
 export function QuestionCardSkeleton() {
     return (
         <div className={styles.card}>

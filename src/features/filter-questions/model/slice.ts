@@ -26,7 +26,6 @@ export const productFilterSlice = createSlice({
 
 export const { openMobileFilters, closeMobileFilters, toggleMobileFilters } = productFilterSlice.actions;
 
-// Селектор для удобного взятия данных в компонентах
 export const selectIsFilterOpen = (state: { productFilter: initialStateType }) => state.productFilter.isFilterOpen;
 
 export default productFilterSlice.reducer;

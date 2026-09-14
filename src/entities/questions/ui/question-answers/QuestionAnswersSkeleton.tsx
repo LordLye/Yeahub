@@ -2,7 +2,6 @@ import styles from './QuestionAnswers.module.scss'
 import Skeleton from '@/shared/ui/skeleton';
 
 export function QuestionAnswersSkeleton() {
-    
 
     return (
         <section className={styles.container}>

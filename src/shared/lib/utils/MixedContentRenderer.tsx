@@ -23,9 +23,9 @@ export function MixedContentRenderer({ dbText }: MixedContentRendererProps) {
   }, [dbText]);
 
   return (
-    <div 
+    <div
       className={styles.mixedContentBody}
-      dangerouslySetInnerHTML={{ __html: cleanHtml }} 
+      dangerouslySetInnerHTML={{ __html: cleanHtml }}
     />
   );
 }

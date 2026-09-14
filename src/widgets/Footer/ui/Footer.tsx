@@ -12,7 +12,6 @@ export function Footer() {
                         <Icon name="yeahub" className={styles.logo} />
                     </div>
 
-
                     <p className={styles.subtitle}>
                         Выбери, каким будет IT завтра, вместе с нами
                     </p>

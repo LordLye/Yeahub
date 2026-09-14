@@ -2,7 +2,6 @@ import styles from './QuestionInfo.module.scss';
 import Skeleton from '@/shared/ui/skeleton';
 
 export function QuestionInfoSkeleton() {
-
     return (
         <section className={styles.questionInfo}>
             <div className={styles.wrapper}>

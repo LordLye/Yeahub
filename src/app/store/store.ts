@@ -4,7 +4,6 @@ import { productFilterReducer } from "@/features/filter-questions";
 import { authReducer } from "@/features/auth";
 import { headerReducer } from "@/widgets/header";
 
-
 export const store = configureStore({
     reducer: {
         [baseApi.reducerPath]: baseApi.reducer,
@@ -14,4 +13,4 @@ export const store = configureStore({
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(baseApi.middleware),
-    });
+});

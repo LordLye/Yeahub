@@ -8,29 +8,26 @@ export function Modal({ isOpen, onClose, children, className, style, noCloseButt
     const dialogRef = useRef<HTMLDialogElement>(null);
 
     useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
+        const dialog = dialogRef.current;
+        if (!dialog) return;
 
-    // ИСПРАВЛЕНИЕ: Явно проверяем проп, который пришел из React, приводя его к boolean.
-    // Если там undefined или false, то scrollLockDisabled будет строго false.
-    const isScrollLockDisabled = Boolean(rest['data-no-scroll-lock']);
+        const isScrollLockDisabled = Boolean(rest['data-no-scroll-lock']);
 
-    if (isOpen) {
-        if (!dialog.open) dialog.show(); 
-        
-        // Если блокировка НЕ отключена — убираем скролл
-        if (!isScrollLockDisabled) {
-            document.body.style.overflow = "hidden";
+        if (isOpen) {
+            if (!dialog.open) dialog.show();
+
+            if (!isScrollLockDisabled) {
+                document.body.style.overflow = "hidden";
+            }
+        } else {
+            if (dialog.open) dialog.close();
+            document.body.style.overflow = "";
         }
-    } else {
-        if (dialog.open) dialog.close();
-        document.body.style.overflow = "";
-    }
 
-    return () => {
-        document.body.style.overflow = "";
-    };
-}, [isOpen, rest['data-no-scroll-lock']]);
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isOpen, rest['data-no-scroll-lock']]);
 
 
     useEffect(() => {

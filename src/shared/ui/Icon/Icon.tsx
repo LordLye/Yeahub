@@ -1,5 +1,4 @@
 import clsx from "clsx";
-
 import FigmaIcon from '@/shared/assets/icons/figma.svg?react';
 import GithubIcon from '@/shared/assets/icons/github.svg?react';
 import LinkedinIcon from '@/shared/assets/icons/linkedin.svg?react';
@@ -25,7 +24,7 @@ const iconTypes: Record<string, React.FunctionComponent<React.SVGProps<SVGSVGEle
     defaultSkillIcon: defaultSkillIcon,
 };
 
-export const Icon = ({ name, className = '', ...props }: { name: string; className?: string; [key: string]: unknown }) => {
+export const Icon = ({ name, className = '', ...props }: { name: string; className?: string;[key: string]: unknown }) => {
     const SelectedIcon = iconTypes[name];
 
     if (!SelectedIcon) return null;
