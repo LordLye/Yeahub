@@ -100,7 +100,7 @@ export function FiltersModal() {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [active, setActive] = useState<ActiveState>(() => getInitialState(searchParams));
 	const [statuses] = useState(STATUSES);
-	const [isDesktop, setIsDesktop] = useState(false);
+	const [isDesktop, setIsDesktop] = useState(() => window.matchMedia('(min-width: 768px)').matches);
 
 	// Храним актуальный стейт для безопасного размонтирования на мобильных
 	const activeRef = useRef(active);
@@ -111,7 +111,6 @@ export function FiltersModal() {
 	// Отслеживаем брейкпоинт экрана
 	useEffect(() => {
 		const mediaQuery = window.matchMedia('(min-width: 768px)');
-		setIsDesktop(mediaQuery.matches);
 		const handleScreenChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
 		mediaQuery.addEventListener('change', handleScreenChange);
 		return () => mediaQuery.removeEventListener('change', handleScreenChange);
@@ -201,7 +200,7 @@ export function FiltersModal() {
 	}, [specializationsDataResponse, active.specializationId, toggle]);
 
 	const defaultIconFallback = useMemo(() => (
-		<Icon name="defaultSkillIcon" w={28} h={28} />
+		<Icon name="defaultSkillIcon" width={28} height={28} />
 	), []);
 
 	const memoizedSkills = useMemo(() => {

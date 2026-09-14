@@ -3,8 +3,9 @@ import styles from './QuestionAnswers.module.scss'
 import { MixedContentRenderer } from '@/shared/lib/utils';
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+import type { Question } from '../../model/types';
 
-export function QuestionAnswers({ question }: { question: any}) {
+export function QuestionAnswers({ question }: { question: Question }) {
     const [isAnswerOpen, setIsAnswerOpen] = useState(false);
     const [isButtonCreated, setIsButtonCreated] = useState(false);
     const MAX_HEIGHT = parseInt(styles.maxHeightAnswerBlock, 10) || 300;
@@ -16,7 +17,7 @@ export function QuestionAnswers({ question }: { question: any}) {
         if (!element) return;
 
         const resizeObserver = new ResizeObserver((el) => {
-            for (let target of el) {
+            for (const target of el) {
                 const currentScrollHeight = target.target.scrollHeight;
 
                 if (currentScrollHeight > MAX_HEIGHT) {
@@ -46,7 +47,7 @@ export function QuestionAnswers({ question }: { question: any}) {
             <div className={clsx(styles.answerContainer, isAnswerOpen && styles.open)}>
                 <h2 className={styles.title}>Развёрнытый ответ</h2>
                 <div className={styles.answer} ref={longAnswerRef}>
-                    <MixedContentRenderer dbText={question.longAnswer} />
+                    <MixedContentRenderer dbText={question.longAnswer ?? ''} />
                 </div>
                 {
                     isButtonCreated && (

@@ -5,12 +5,13 @@ import { QuestionListSkeleton } from "@/widgets/questions-list";
 import { Icon } from "@/shared/ui/icon";
 import { useDispatch, useSelector } from "react-redux";
 import { closeMobileFilters, openMobileFilters, selectIsFilterOpen } from "@/features/filter-questions/model/slice";
+import { selectHeaderHeight } from "@/widgets/header";
 import { ResponsivePortal } from "@/shared/ui/responsive-portal/ResponsivePortal";
 const FiltersModal = React.lazy(() => import('@/features/filter-questions/ui/FiltersModal/FiltersModal').then(module => ({ default: module.FiltersModal })));
 
 export function HomePage() {
   const isFiltersOpen = useSelector(selectIsFilterOpen);
-  const headerHeight = useSelector((state: any) => state.header?.headerHeight ?? 0);
+  const headerHeight = useSelector(selectHeaderHeight);
   const dispatch = useDispatch();
 
   const handleCloseMobile = () => {
@@ -35,20 +36,20 @@ export function HomePage() {
         </div>
       </div>
 
-      <aside id="desktop-aside-slot" className={styles.asideSlot}></aside>
-
-      <ResponsivePortal
-        isOpen={isFiltersOpen}
-        onClose={handleCloseMobile}
-        style={{
-          position: 'absolute',
-          top: `${headerHeight}px`,
-          right: 0,
-          height: 'auto',
-        }}
-      >
-        <FiltersModal />
-      </ResponsivePortal>
+      <aside id="desktop-aside-slot" className={styles.asideSlot}>
+        <ResponsivePortal
+          isOpen={isFiltersOpen}
+          onClose={handleCloseMobile}
+          style={{
+            position: 'absolute',
+            top: `${headerHeight}px`,
+            right: 0,
+            height: 'auto',
+          }}
+        >
+          <FiltersModal />
+        </ResponsivePortal>
+      </aside>
     </div>
   );
 }

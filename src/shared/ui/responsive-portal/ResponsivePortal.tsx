@@ -1,27 +1,24 @@
 import { useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
+import type { CSSProperties, ReactNode } from 'react';
 import { Modal } from '@/shared/ui/modal/Modal';
 import { useSelector } from 'react-redux';
 
 interface ResponsivePortalProps {
     isOpen: boolean;
     onClose: () => void;
-    children: React.ReactNode;
-    style?: React.CSSProperties;
-    [key: string]: any;
+    children: ReactNode;
+    style?: CSSProperties;
+    className?: string;
 }
 
-export function ResponsivePortal({ isOpen, onClose, children, style, ...rest }: ResponsivePortalProps) {
-    const [isDesktop, setIsDesktop] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
-    const headerHeight = useSelector((state: any) => state.header?.headerHeight ?? 0);
+export function ResponsivePortal({ isOpen, onClose, children, style, className }: ResponsivePortalProps) {
+    const [isDesktop, setIsDesktop] = useState(() => window.matchMedia('(min-width: 1024px)').matches);
+    const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 767px)').matches);
+    const headerHeight = useSelector((state: { header?: { headerHeight: number | null } }) => state.header?.headerHeight ?? 0);
 
     useEffect(() => {
         const desktopQuery = window.matchMedia('(min-width: 1024px)');
         const mobileQuery = window.matchMedia('(max-width: 767px)');
-
-        setIsDesktop(desktopQuery.matches);
-        setIsMobile(mobileQuery.matches);
 
         const handleDesktopChange = (e: MediaQueryListEvent) => {
             setIsDesktop(e.matches);
@@ -43,17 +40,13 @@ export function ResponsivePortal({ isOpen, onClose, children, style, ...rest }: 
         };
     }, []);
 
-    // ДЕСКТОП
     if (isDesktop) {
-        const desktopSlot = document.getElementById('desktop-aside-slot');
-        if (!desktopSlot) return null;
-        return createPortal(children, desktopSlot);
+        return children;
     }
 
-    // МОБ / ПЛАНШ
     const shouldDisableScrollLock = !isMobile;
 
-    const portalStyle: React.CSSProperties = {
+    const portalStyle: CSSProperties = {
         ...style,
 
         ...(isMobile && {
@@ -66,8 +59,8 @@ export function ResponsivePortal({ isOpen, onClose, children, style, ...rest }: 
             isOpen={isOpen}
             onClose={onClose}
             style={portalStyle}
-            data-no-scroll-lock={shouldDisableScrollLock}
-            {...rest}
+            className={className}
+            noScrollLock={shouldDisableScrollLock}
         >
             {children}
         </Modal>

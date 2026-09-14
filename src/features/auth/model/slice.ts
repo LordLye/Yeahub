@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+type AuthState = {
+    isMobileMenuOpen: boolean;
+};
+
+const initialState: AuthState = {
     isMobileMenuOpen: false,
 };
 
@@ -14,5 +18,5 @@ export const authSlice = createSlice({
 });
 
 export const { openAuthMenu, closeAuthMenu } = authSlice.actions;
-export const selectIsAuthMenuOpen = (state: any) => state.auth.isMobileMenuOpen;
+export const selectIsAuthMenuOpen = (state: { auth: AuthState }) => state.auth.isMobileMenuOpen;
 export default authSlice.reducer;

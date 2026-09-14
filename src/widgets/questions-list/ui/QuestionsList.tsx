@@ -1,6 +1,7 @@
-import { useMemo, useRef } from "react";
+import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { QuestionCard, useGetQuestionsQuery } from "@/entities/questions";
+import type { QuestionsResponse } from "@/entities/questions";
 import { Pagination } from "@/shared/ui/pagination/Pagination";
 import styles from './QuestionsList.module.scss';
 import { QuestionListSkeleton } from "./QuestionListSkeleton";
@@ -17,9 +18,11 @@ export function QuestionsList() {
     );
 
     const { data: questionsData, isFetching, isLoading, isError } = useGetQuestionsQuery(queryParams);
-    const prevDataRef = useRef(questionsData);
-    if (questionsData) prevDataRef.current = questionsData;
-    const displayData = questionsData ?? prevDataRef.current;
+    const [displayData, setDisplayData] = useState<QuestionsResponse | undefined>(questionsData);
+
+    if (questionsData !== undefined && questionsData !== displayData) {
+        setDisplayData(questionsData);
+    }
 
     if (isLoading && !displayData) {
         return <QuestionListSkeleton />;
@@ -36,7 +39,7 @@ export function QuestionsList() {
     return (
         <section className={`${styles.section} ${isFetching ? styles.pending : ''}`}>
             <ul className={styles.list}>
-                {questions.map((item: { id: number; title: string; shortAnswer: string; rate: number; complexity: string }) => (
+                {questions.map((item) => (
                     <li key={item.id} className={styles.item}>
                         <QuestionCard
                             text={item.title}

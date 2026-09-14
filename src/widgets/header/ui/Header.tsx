@@ -20,7 +20,7 @@ export function Header() {
         if (!header) return;
 
         const resizeObserver = new ResizeObserver((entries) => {
-            for (let entry of entries) {
+            for (const entry of entries) {
                 const height = entry.target.getBoundingClientRect().height;
                 dispatch(setHeaderHeight(height));
             }
@@ -98,7 +98,7 @@ export function Header() {
                             triggerRef={selectTriggerRef}
                             className={styles.selectModalMobile}
                             noCloseButton
-                            data-no-scroll-lock
+                            noScrollLock
                             style={{
                                 position: 'absolute',
                                 top: `${selectModalCoords.top}px`,
@@ -126,7 +126,7 @@ export function Header() {
                     onClose={handleClose}
                     className={styles.mobileAuthModal}
                     noCloseButton
-                    data-no-scroll-lock
+                    noScrollLock
                     triggerRef={authButtonRef}
                     style={{
                         position: 'absolute',

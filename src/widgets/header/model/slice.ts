@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+type HeaderState = {
+    headerHeight: number | null;
+};
+
+const initialState: HeaderState = {
     headerHeight: null,
 };
 
@@ -13,5 +17,5 @@ export const headerSlice = createSlice({
 });
 
 export const { setHeaderHeight } = headerSlice.actions;
-export const selectHeaderHeight = (state: any) => state.header.headerHeight;
+export const selectHeaderHeight = (state: { header: HeaderState }) => state.header.headerHeight ?? 0;
 export default headerSlice.reducer;
