@@ -1,0 +1,13 @@
+.image {
+    width: 28px;
+    height: 28px;
+    max-width: 28px;
+    max-height: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+}
+
+.imageHidden {
+    display: none !important;
+}

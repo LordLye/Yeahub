@@ -4,3 +4,4 @@ export {QuestionCardSkeleton} from './ui/question-card/QuestionCardSkeleton';
 
 export { QuestionHeaderCard } from './ui/question-header-card/QuestionHeaderCard';
 export { QuestionAnswers } from './ui/question-answers/QuestionAnswers';
+export type { Question, QuestionsResponse } from './model/types';

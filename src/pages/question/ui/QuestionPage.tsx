@@ -11,6 +11,7 @@ import { PromoBanner } from '@/widgets/promo-banner';
 import { QuestionInfo } from '@/widgets/question-info';
 import { QuestionPageSkeleton } from './QuestionPageSkeleton';
 import { QuestionInfoSkeleton } from '@/widgets/question-info';
+import { selectHeaderHeight } from '@/widgets/header';
 
 export function QuestionPage() {
     const { id } = useParams<{ id?: string }>();
@@ -34,21 +35,13 @@ export function QuestionPage() {
 
     const { data: questionsData, isFetching: isListFetching } = useGetQuestionsQuery(queryParams);
 
-    const questions = questionsData?.data || [];
+    const questions = useMemo(() => questionsData?.data ?? [], [questionsData]);
     const totalCount = questionsData?.total || 0;
     const limit = questionsData?.limit || 1;
     const maxPages = Math.ceil(totalCount / limit);
 
     // Ищем индекс вопроса в текущем списке
-    const currentQIndex = questions.findIndex((q: any) => q.id === currentId);
-
-    // 2. Снимаем флаги блокировки, как только данные загрузились и элемент найден
-    useEffect(() => {
-        if (!isListFetching && currentQIndex !== -1) {
-            setIsPageChanging(false);
-            setDirection(null); // Сбрасываем направление
-        }
-    }, [isListFetching, currentQIndex]);
+    const currentQIndex = questions.findIndex((q) => q.id === currentId);
 
     // 3. Запрос за деталями конкретного вопроса
     const shouldSkipQuestionQuery = !isValidId || isPageChanging || currentQIndex === -1;
@@ -129,7 +122,7 @@ export function QuestionPage() {
         }
     }, [isPageChanging, isListFetching, questions, currentQIndex, direction, searchParams, navigate, location.state]);
 
-    const headerHeight = useSelector((state: any) => state.header?.headerHeight ?? 0);
+    const headerHeight = useSelector(selectHeaderHeight);
     const [isInfoOpen, setIsInfoOpen] = useState(false);
 
     function handleInfoClose() {
@@ -152,6 +145,11 @@ export function QuestionPage() {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
+    if (!isListFetching && currentQIndex !== -1 && (isPageChanging || direction !== null)) {
+        setIsPageChanging(false);
+        setDirection(null);
+    }
 
     if (!isValidId) {
         return <div className={styles.centerMessage}>Ошибка: Указан некорректный ID</div>;
@@ -186,25 +184,25 @@ export function QuestionPage() {
                     </div>
                 </div>
                 <aside className={styles.asideSlot} >
-                    <div className={styles.sidebar} id="desktop-aside-slot"></div>
+                    <div className={styles.sidebar} id="desktop-aside-slot">
+                        <ResponsivePortal
+                            isOpen={isInfoOpen}
+                            onClose={handleInfoClose}
+                            style={{
+                                position: 'absolute',
+                                top: `${headerHeight}px`,
+                                right: 0,
+                                height: 'auto',
+                            }}
+                            className={styles.infoModal}
+                        >
+                            <Suspense fallback={<QuestionInfoSkeleton />}>
+                                <QuestionInfo data={question} isLoading={isQuestionLoading} />
+                            </Suspense>
+                        </ResponsivePortal>
+                    </div>
                     <PromoBanner className={styles.promoBanner} />
                 </aside>
-
-                <ResponsivePortal
-                    isOpen={isInfoOpen}
-                    onClose={handleInfoClose}
-                    style={{
-                        position: 'absolute',
-                        top: `${headerHeight}px`,
-                        right: 0,
-                        height: 'auto',
-                    }}
-                    className={styles.infoModal}
-                >
-                    <Suspense fallback={<QuestionInfoSkeleton />}>
-                        <QuestionInfo data={question} isLoading={isQuestionLoading} />
-                    </Suspense>
-                </ResponsivePortal>
             </div>
         </section>
     );

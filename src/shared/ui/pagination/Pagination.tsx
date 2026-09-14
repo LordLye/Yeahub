@@ -15,8 +15,9 @@ export function Pagination({ totalPages }: PaginationProps) {
     const items = getPagination(currentPage, totalPages, 2);
 
     useEffect(() => {
+        if (params.get("page") === String(currentPage)) return;
         setParam("page", String(currentPage), false);
-    }, [params]);
+    }, [currentPage, params, setParam]);
 
     const handlerAddParams = (event: React.MouseEvent<HTMLDivElement>) => {
         const target = event.target as HTMLElement;

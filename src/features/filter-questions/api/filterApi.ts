@@ -6,7 +6,7 @@ type FilterListResponse<T> = {
 
 export const filterApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getSkills: builder.query<FilterListResponse<{ id: number; title: string }>, void>({
+        getSkills: builder.query<FilterListResponse<{ id: number; title: string; imageSrc?: string }>, void>({
             query: () => ({
                 url: "/skills",
                 method: "GET",

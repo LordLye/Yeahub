@@ -24,4 +24,14 @@
     flex-direction: row;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+
+    img,
+    svg {
+        width: 28px;
+        height: 28px;
+        max-width: 28px;
+        max-height: 28px;
+        flex-shrink: 0;
+    }
 }

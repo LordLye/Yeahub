@@ -1,11 +1,17 @@
 import { useMemo } from 'react';
 import styles from './QuestionInfo.module.scss';
 import { Icon } from '@/shared/ui/icon';
+import type { Question } from '@/entities/questions';
 
-export function QuestionInfo({ data}: any) {
+interface QuestionInfoProps {
+    data: Question;
+    isLoading?: boolean;
+}
+
+export function QuestionInfo({ data }: QuestionInfoProps) {
     const memoizedSkills = useMemo(() => {
-        return data.questionSkills
-            .map((item: any) => (
+        return (data.questionSkills ?? [])
+            .map((item) => (
                 <div key={item.id} className={styles.skillWrapper}>
                     <Icon name="figma" className={styles.icon} />
                     <p className={styles.skill}>{item.title}</p>
@@ -14,9 +20,9 @@ export function QuestionInfo({ data}: any) {
     }, [data]);
 
     const memoizedKeyWords = useMemo(() => {
-        return data.keywords
-            .map((item: any) => (
-                <p key={`${item}+${Math.random()}`} className={styles.keyword}>#{item}</p>
+        return (data.keywords ?? [])
+            .map((item, index) => (
+                <p key={`${item}-${index}`} className={styles.keyword}>#{item}</p>
             ));
     }, [data]);
 

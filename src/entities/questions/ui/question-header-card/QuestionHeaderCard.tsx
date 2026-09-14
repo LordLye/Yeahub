@@ -1,8 +1,9 @@
 import { Icon } from '@/shared/ui/icon';
 import styled from './QuestionHeaderCard.module.scss'
 import questionImage from "@/shared/assets/images/questionImage.png";
+import type { Question } from '../../model/types';
 
-export function QuestionHeaderCard({ question, isOpenInfo }: any) {
+export function QuestionHeaderCard({ question, isOpenInfo }: { question: Question; isOpenInfo: (open: boolean) => void }) {
     if (!question) return null;
 
     const handleInfoButtonClick = () => {

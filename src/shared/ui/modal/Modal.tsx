@@ -1,22 +1,32 @@
 import { useEffect, useRef } from "react";
+import type { CSSProperties, DialogHTMLAttributes, ReactNode, RefObject } from "react";
 import { createPortal } from "react-dom";
 import styles from './Modal.module.scss';
 import clsx from "clsx";
 import { CircleX } from "lucide-react";
 
-export function Modal({ isOpen, onClose, children, className, style, noCloseButton, triggerRef, ...rest }: { isOpen: boolean; onClose: () => void; children: React.ReactNode, className?: string, style?: React.CSSProperties, noCloseButton?: boolean, triggerRef?: React.RefObject<HTMLElement | null>, [key: string]: any }) {
+interface ModalProps extends Omit<DialogHTMLAttributes<HTMLDialogElement>, 'onClose'> {
+    isOpen: boolean;
+    onClose: () => void;
+    children: ReactNode;
+    className?: string;
+    style?: CSSProperties;
+    noCloseButton?: boolean;
+    triggerRef?: RefObject<HTMLElement | null>;
+    noScrollLock?: boolean;
+}
+
+export function Modal({ isOpen, onClose, children, className, style, noCloseButton, triggerRef, noScrollLock, ...rest }: ModalProps) {
     const dialogRef = useRef<HTMLDialogElement>(null);
 
     useEffect(() => {
         const dialog = dialogRef.current;
         if (!dialog) return;
 
-        const isScrollLockDisabled = Boolean(rest['data-no-scroll-lock']);
-
         if (isOpen) {
             if (!dialog.open) dialog.show();
 
-            if (!isScrollLockDisabled) {
+            if (!noScrollLock) {
                 document.body.style.overflow = "hidden";
             }
         } else {
@@ -27,7 +37,7 @@ export function Modal({ isOpen, onClose, children, className, style, noCloseButt
         return () => {
             document.body.style.overflow = "";
         };
-    }, [isOpen, rest['data-no-scroll-lock']]);
+    }, [isOpen, noScrollLock]);
 
 
     useEffect(() => {
