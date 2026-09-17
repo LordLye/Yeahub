@@ -1,2 +1,2 @@
 export { useGetSpecializationsQuery } from './api/specializationApi';
-export type { Specialization, SpecializationsResponse } from './model/types';
+export type { Specialization, SpecializationsQueryParams, SpecializationsResponse } from './model/types';

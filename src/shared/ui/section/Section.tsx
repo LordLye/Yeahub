@@ -7,18 +7,30 @@ export function Section({
     isLoading,
     expanded = false,
     expandCount = 5,
+    hasMore = false,
+    onExpand,
     children,
 }: {
     title: string;
     isLoading: boolean;
     expanded?: boolean;
     expandCount?: number;
+    hasMore?: boolean;
+    onExpand?: () => void;
     children: React.ReactNode[];
 }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const toggleExpand = () => {
-        setIsExpanded((prev) => !prev);
+        setIsExpanded((prev) => {
+            const next = !prev;
+            if (next) onExpand?.();
+            return next;
+        });
     };
+
+    const items = Array.isArray(children) ? children : [children];
+    const visibleItems = isExpanded ? items : items.slice(0, expandCount);
+    const showExpandLink = expanded && !isLoading && (hasMore || items.length > expandCount);
 
     return (
         <div className={styles.section}>
@@ -30,13 +42,13 @@ export function Section({
             )}
             {!isLoading && (
                 <div className={styles.chips}>
-                    {Array.isArray(children) ? children.slice(0, isExpanded ? children.length : expandCount) : children}
+                    {visibleItems}
                 </div>
             )}
 
-            {expanded && children.length > expandCount && !isLoading && (
+            {showExpandLink && (
                 <p
-                    onClick={() => toggleExpand()}
+                    onClick={toggleExpand}
                     className={styles.expandLink}
                 >
                     {isExpanded ? "Скрыть" : "Посмотреть все"}

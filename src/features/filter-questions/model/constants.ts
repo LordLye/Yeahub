@@ -1,3 +1,6 @@
+export const SPECIALIZATIONS_PREVIEW_LIMIT = 5;
+export const SKILLS_PREVIEW_LIMIT = 8;
+
 export const LEVELS = [
     { name: '1-3', id: [1, 2, 3] },
     { name: '4-6', id: [4, 5, 6] },
