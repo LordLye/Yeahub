@@ -170,7 +170,6 @@ export function FiltersModal() {
 	const { data: skillsData, isLoading: isSkillsLoading } = useGetSkillsQuery({
 		limit: SKILLS_PREVIEW_LIMIT,
 	});
-	console.log('skillsData', skillsData);
 	const [fetchAllSkills, { data: allSkillsData }] = useLazyGetSkillsQuery();
 
 	const { data: specializationsData, isLoading: isSpecializationsLoading } = useGetSpecializationsQuery({
@@ -179,7 +178,6 @@ export function FiltersModal() {
 	const [fetchAllSpecializations, { data: allSpecializationsData }] = useLazyGetSpecializationsQuery();
 
 	const skillsDataResponse = allSkillsData?.data ?? skillsData?.data;
-	console.log('skillsDataResponse', skillsDataResponse);
 	const specializationsDataResponse = allSpecializationsData?.data ?? specializationsData?.data;
 	const isLoading = isSkillsLoading || isSpecializationsLoading;
 
