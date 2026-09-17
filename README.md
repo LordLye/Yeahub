@@ -4,7 +4,7 @@
 
 ## 🚀 Стек технологий
 
-- **Фреймворк:** React 18 + TypeScript
+- **Фреймворк:** React 19 + TypeScript
 - **Сборщик:** Vite (с поддержкой путей-алиасов `@/*`)
 - **Стилизация:** SCSS (Sass) + CSS Modules
 - **Управление состоянием & API:** Redux Toolkit & RTK Query
@@ -15,10 +15,16 @@
 
 ## 🛠️ Локальное развертывание
 
+Нужны **Node.js 20.19+** (на ветке 22.x — 22.13+) и **npm 10+**. Vite 8 и ESLint 10 на более старых версиях Node не устанавливаются. Версия зафиксирована в `.nvmrc`:
+
+```bash
+nvm use
+```
+
 ### 1. Клонирование репозитория
 ```bash
-git clone https://github.com
-cd yeahub-lake
+git clone <url-репозитория>
+cd yeahub-react
 ```
 
 ### 2. Установка зависимостей
