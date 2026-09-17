@@ -9,6 +9,7 @@ interface QuestionInfoProps {
 }
 
 export function QuestionInfo({ data }: QuestionInfoProps) {
+    console.log(data);
     const memoizedSkills = useMemo(() => {
         return (data.questionSkills ?? [])
             .map((item) => (
@@ -60,7 +61,7 @@ export function QuestionInfo({ data }: QuestionInfoProps) {
                 <p className={styles.author}>
                     <span>Автор: </span>
                     <span className={styles.authorName}>
-                        Дмитрий Мусиенко
+                        {data.createdBy?.username}
                     </span>
                 </p>
             </div>

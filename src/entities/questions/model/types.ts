@@ -13,6 +13,7 @@ export interface Question {
     complexity: string;
     questionSkills?: QuestionSkill[];
     keywords?: string[];
+    createdBy?: { id: string; username: string };
 }
 
 export interface QuestionsResponse {
