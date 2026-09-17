@@ -40,11 +40,12 @@ export function QuestionPage() {
     const limit = questionsData?.limit || 1;
     const maxPages = Math.ceil(totalCount / limit);
 
-    // Ищем индекс вопроса в текущем списке
+    // Ищем индекс вопроса в текущем списке (для prev/next).
+    // Если открыли вопрос напрямую по id, его может не быть на текущей странице списка.
     const currentQIndex = questions.findIndex((q) => q.id === currentId);
 
     // 3. Запрос за деталями конкретного вопроса
-    const shouldSkipQuestionQuery = !isValidId || isPageChanging || currentQIndex === -1;
+    const shouldSkipQuestionQuery = !isValidId || isPageChanging;
     const { data: question, isLoading: isQuestionLoading, isError } = useGetQuestionByIdQuery(
         currentId,
         { skip: shouldSkipQuestionQuery }
@@ -146,20 +147,22 @@ export function QuestionPage() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    if (!isListFetching && currentQIndex !== -1 && (isPageChanging || direction !== null)) {
-        setIsPageChanging(false);
-        setDirection(null);
-    }
+    useEffect(() => {
+        if (!isListFetching && currentQIndex !== -1 && (isPageChanging || direction !== null)) {
+            setIsPageChanging(false);
+            setDirection(null);
+        }
+    }, [isListFetching, currentQIndex, isPageChanging, direction]);
 
     if (!isValidId) {
         return <div className={styles.centerMessage}>Ошибка: Указан некорректный ID</div>;
     }
 
-    if (isPageChanging || currentQIndex === -1 || isQuestionLoading) {
+    if (isPageChanging || isQuestionLoading) {
         return <QuestionPageSkeleton />;
     }
 
-    if (isQuestionLoading || isError || !question) {
+    if (isError || !question) {
         return <div className={styles.centerMessage}>Произошла ошибка при загрузке вопроса</div>;
     }
 
