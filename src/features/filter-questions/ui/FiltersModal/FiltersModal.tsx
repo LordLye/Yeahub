@@ -7,9 +7,10 @@ import { Chip } from "@/shared/ui/chip";
 import { SearchInput } from "../SearchInput";
 
 import { LEVELS, RATINGS, STATUSES } from "@/shared/constants/filters";
-import { useGetSkillsQuery, useGetSpecializationsQuery } from "../../api/filterApi";
-
-import type { ActiveState, SearchParamsLike, SpecializationItem, SkillsItem } from "./types";
+import { useGetSkillsQuery, useLazyGetSkillsQuery } from "@/entities/skill";
+import { useGetSpecializationsQuery, useLazyGetSpecializationsQuery } from "@/entities/specialization";
+import { SKILLS_PREVIEW_LIMIT, SPECIALIZATIONS_PREVIEW_LIMIT } from "../../model/constants";
+import type { ActiveState, SearchParamsLike } from "../../model/types";
 import { ChipImage } from "@/shared/ui/chip-image/ChipImage";
 import { Icon } from "@/shared/ui/icon";
 
@@ -166,12 +167,35 @@ export function FiltersModal() {
 		});
 	}, []);
 
-	const { data: skillsData, isFetching: isSkillsLoading } = useGetSkillsQuery();
-	const { data: specializationsData, isFetching: isSpecializationsLoading } = useGetSpecializationsQuery();
+	const { data: skillsData, isLoading: isSkillsLoading } = useGetSkillsQuery({
+		limit: SKILLS_PREVIEW_LIMIT,
+	});
+	console.log('skillsData', skillsData);
+	const [fetchAllSkills, { data: allSkillsData }] = useLazyGetSkillsQuery();
 
-	const skillsDataResponse = skillsData?.data;
-	const specializationsDataResponse = specializationsData?.data;
+	const { data: specializationsData, isLoading: isSpecializationsLoading } = useGetSpecializationsQuery({
+		limit: SPECIALIZATIONS_PREVIEW_LIMIT,
+	});
+	const [fetchAllSpecializations, { data: allSpecializationsData }] = useLazyGetSpecializationsQuery();
+
+	const skillsDataResponse = allSkillsData?.data ?? skillsData?.data;
+	console.log('skillsDataResponse', skillsDataResponse);
+	const specializationsDataResponse = allSpecializationsData?.data ?? specializationsData?.data;
 	const isLoading = isSkillsLoading || isSpecializationsLoading;
+
+	const handleExpandSkills = useCallback(() => {
+		const total = skillsData?.total;
+		if (total && total > SKILLS_PREVIEW_LIMIT && !allSkillsData) {
+			fetchAllSkills({ limit: total });
+		}
+	}, [skillsData?.total, allSkillsData, fetchAllSkills]);
+
+	const handleExpandSpecializations = useCallback(() => {
+		const total = specializationsData?.total;
+		if (total && total > SPECIALIZATIONS_PREVIEW_LIMIT && !allSpecializationsData) {
+			fetchAllSpecializations({ limit: total });
+		}
+	}, [specializationsData?.total, allSpecializationsData, fetchAllSpecializations]);
 
 	const memoizedStatus = useMemo(() => {
 		return statuses.map((item) => (
@@ -186,9 +210,8 @@ export function FiltersModal() {
 	}, [statuses, active.status, toggle]);
 
 	const memoizedSpecializations = useMemo(() => {
-		// Перенесли дефолтное значение вовнутрь
 		const list = specializationsDataResponse ?? [];
-		return list.map((item: SpecializationItem) => (
+		return list.map((item) => (
 			<Chip
 				key={item.id}
 				active={active.specializationId.includes(item.id.toString())}
@@ -204,9 +227,8 @@ export function FiltersModal() {
 	), []);
 
 	const memoizedSkills = useMemo(() => {
-		// Перенесли дефолтное значение вовнутрь
 		const list = skillsDataResponse ?? [];
-		return list.map((item: SkillsItem) => (
+		return list.map((item) => (
 			<Chip
 				key={item.id}
 				active={active.skills.includes(String(item.id))}
@@ -252,11 +274,25 @@ export function FiltersModal() {
 		<div className={styles.filtersModalWrapper}>
 			<SearchInput value={active.titleOrDescription} onChange={handleSearchChange} />
 
-			<Section title="Специализация" isLoading={isLoading} expanded={true} expandCount={5}>
+			<Section
+				title="Специализация"
+				isLoading={isLoading}
+				expanded
+				expandCount={SPECIALIZATIONS_PREVIEW_LIMIT}
+				hasMore={(specializationsData?.total ?? 0) > SPECIALIZATIONS_PREVIEW_LIMIT}
+				onExpand={handleExpandSpecializations}
+			>
 				{memoizedSpecializations}
 			</Section>
 
-			<Section title="Навыки" isLoading={isLoading} expanded={true} expandCount={8}>
+			<Section
+				title="Навыки"
+				isLoading={isLoading}
+				expanded
+				expandCount={SKILLS_PREVIEW_LIMIT}
+				hasMore={(skillsData?.total ?? 0) > SKILLS_PREVIEW_LIMIT}
+				onExpand={handleExpandSkills}
+			>
 				{memoizedSkills}
 			</Section>
 

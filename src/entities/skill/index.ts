@@ -1,2 +1,2 @@
-export { useGetSkillsQuery } from './api/skillApi';
-export type { Skill, SkillsResponse } from './model/types';
+export { useGetSkillsQuery, useLazyGetSkillsQuery } from './api/skillApi';
+export type { Skill, SkillsQueryParams, SkillsResponse } from './model/types';

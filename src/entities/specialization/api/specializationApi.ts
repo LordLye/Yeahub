@@ -1,16 +1,17 @@
 import { baseApi } from '@/shared/api';
-import type { SpecializationsResponse } from '../model/types';
+import type { SpecializationsQueryParams, SpecializationsResponse } from '../model/types';
 
 export const specializationApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getSpecializations: builder.query<SpecializationsResponse, void>({
-            query: () => ({
+        getSpecializations: builder.query<SpecializationsResponse, SpecializationsQueryParams>({
+            query: (params) => ({
                 url: '/specializations',
                 method: 'GET',
+                params,
             }),
             providesTags: ['Specializations'],
         }),
     }),
 });
 
-export const { useGetSpecializationsQuery } = specializationApi;
+export const { useGetSpecializationsQuery, useLazyGetSpecializationsQuery } = specializationApi;

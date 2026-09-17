@@ -1,7 +1,7 @@
 import { CircleIcon } from "@/shared/ui/circleIcon";
 import styles from './Footer.module.scss';
 import { Icon } from "@/shared/ui/icon";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 export function Footer() {
     return (
