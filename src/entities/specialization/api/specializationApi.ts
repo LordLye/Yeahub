@@ -3,15 +3,15 @@ import type { SpecializationsQueryParams, SpecializationsResponse } from '../mod
 
 export const specializationApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getSpecializations: builder.query<SpecializationsResponse, SpecializationsQueryParams | void>({
+        getSpecializations: builder.query<SpecializationsResponse, SpecializationsQueryParams>({
             query: (params) => ({
                 url: '/specializations',
                 method: 'GET',
-                params: params ?? undefined,
+                params,
             }),
             providesTags: ['Specializations'],
         }),
     }),
 });
 
-export const { useGetSpecializationsQuery } = specializationApi;
+export const { useGetSpecializationsQuery, useLazyGetSpecializationsQuery } = specializationApi;

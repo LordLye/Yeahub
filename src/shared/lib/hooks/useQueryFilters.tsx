@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function useQueryFilters() {
     const navigate = useNavigate();

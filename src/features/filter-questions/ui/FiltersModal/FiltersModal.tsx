@@ -7,8 +7,8 @@ import { Chip } from "@/shared/ui/chip";
 import { SearchInput } from "../SearchInput";
 
 import { LEVELS, RATINGS, STATUSES } from "@/shared/constants/filters";
-import { useGetSkillsQuery } from "@/entities/skill";
-import { useGetSpecializationsQuery } from "@/entities/specialization";
+import { useGetSkillsQuery, useLazyGetSkillsQuery } from "@/entities/skill";
+import { useGetSpecializationsQuery, useLazyGetSpecializationsQuery } from "@/entities/specialization";
 import { SKILLS_PREVIEW_LIMIT, SPECIALIZATIONS_PREVIEW_LIMIT } from "../../model/constants";
 import type { ActiveState, SearchParamsLike } from "../../model/types";
 import { ChipImage } from "@/shared/ui/chip-image/ChipImage";
@@ -167,35 +167,35 @@ export function FiltersModal() {
 		});
 	}, []);
 
-	const [skillsLimit, setSkillsLimit] = useState(SKILLS_PREVIEW_LIMIT);
-	const [specializationsLimit, setSpecializationsLimit] = useState(SPECIALIZATIONS_PREVIEW_LIMIT);
+	const { data: skillsData, isLoading: isSkillsLoading } = useGetSkillsQuery({
+		limit: SKILLS_PREVIEW_LIMIT,
+	});
+	console.log('skillsData', skillsData);
+	const [fetchAllSkills, { data: allSkillsData }] = useLazyGetSkillsQuery();
 
-	const { data: skillsData, isLoading: isSkillsLoading } = useGetSkillsQuery(
-		{ limit: skillsLimit },
-		{ placeholderData: (previousData) => previousData },
-	);
-	const { data: specializationsData, isLoading: isSpecializationsLoading } = useGetSpecializationsQuery(
-		{ limit: specializationsLimit },
-		{ placeholderData: (previousData) => previousData },
-	);
+	const { data: specializationsData, isLoading: isSpecializationsLoading } = useGetSpecializationsQuery({
+		limit: SPECIALIZATIONS_PREVIEW_LIMIT,
+	});
+	const [fetchAllSpecializations, { data: allSpecializationsData }] = useLazyGetSpecializationsQuery();
 
-	const skillsDataResponse = skillsData?.data;
-	const specializationsDataResponse = specializationsData?.data;
+	const skillsDataResponse = allSkillsData?.data ?? skillsData?.data;
+	console.log('skillsDataResponse', skillsDataResponse);
+	const specializationsDataResponse = allSpecializationsData?.data ?? specializationsData?.data;
 	const isLoading = isSkillsLoading || isSpecializationsLoading;
 
 	const handleExpandSkills = useCallback(() => {
 		const total = skillsData?.total;
-		if (total && total > skillsLimit) {
-			setSkillsLimit(total);
+		if (total && total > SKILLS_PREVIEW_LIMIT && !allSkillsData) {
+			fetchAllSkills({ limit: total });
 		}
-	}, [skillsData?.total, skillsLimit]);
+	}, [skillsData?.total, allSkillsData, fetchAllSkills]);
 
 	const handleExpandSpecializations = useCallback(() => {
 		const total = specializationsData?.total;
-		if (total && total > specializationsLimit) {
-			setSpecializationsLimit(total);
+		if (total && total > SPECIALIZATIONS_PREVIEW_LIMIT && !allSpecializationsData) {
+			fetchAllSpecializations({ limit: total });
 		}
-	}, [specializationsData?.total, specializationsLimit]);
+	}, [specializationsData?.total, allSpecializationsData, fetchAllSpecializations]);
 
 	const memoizedStatus = useMemo(() => {
 		return statuses.map((item) => (
@@ -210,7 +210,6 @@ export function FiltersModal() {
 	}, [statuses, active.status, toggle]);
 
 	const memoizedSpecializations = useMemo(() => {
-		// Перенесли дефолтное значение вовнутрь
 		const list = specializationsDataResponse ?? [];
 		return list.map((item) => (
 			<Chip
@@ -228,7 +227,6 @@ export function FiltersModal() {
 	), []);
 
 	const memoizedSkills = useMemo(() => {
-		// Перенесли дефолтное значение вовнутрь
 		const list = skillsDataResponse ?? [];
 		return list.map((item) => (
 			<Chip
